@@ -6,7 +6,6 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { PageNotFoundComponent } from '../shared/components/page-not-found/page-not-found.component';
-
 import { ContactComponent } from './contact/contact.component';
 
 const routes: Routes = [
@@ -24,11 +23,15 @@ const routes: Routes = [
     component: ProductsComponent,
   },
   {
-    path: 'product-detail',
+    path: 'product-detail/:id',
     component: ProductDetailComponent,
   },
   {
     path: 'cart',
+    component: CartComponent,
+  },
+  {
+    path: 'cart/:id',
     component: CartComponent,
   },
   {

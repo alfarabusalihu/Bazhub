@@ -6,7 +6,8 @@ export interface User{
 }
 export interface PhoneSpecifics{
     id:number;
-    Model:string;
+    model:string;
     features:string;
+    imagepath:string;
 
 }

@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { RouterModule } from '@angular/router';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     BrowserModule,
     FormsModule,
     RouterModule,
+    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     CarouselModule.forRoot(),

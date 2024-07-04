@@ -1,5 +1,8 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { PhoneSpecifics } from 'src/app/shared/interfaces/user.interface';
+import { ProductServiceService } from '../product-service.service';
+import { Router } from '@angular/router';
+import { Product } from '../shared/interfaces/product.interface';
 
 @Component({
   selector: 'app-products',
@@ -8,25 +11,31 @@ import { PhoneSpecifics } from 'src/app/shared/interfaces/user.interface';
 })
 export class ProductsComponent implements OnInit {
 
-  productInterface:boolean=true;
-  
-  phoneSpecifics:PhoneSpecifics[]=[
-    {id:1,Model:"iPhone 15 pro Max",features:'Ram:8Gb, Hardisk:256Gb'},
-    {id:2,Model:"iPhone 15 pro Max",features:'Ram:8Gb, Hardisk:256Gb'},
-    {id:3,Model:"iPhone 15 pro Max",features:'Ram:8Gb, Hardisk:256Gb'}
+  // productInterface:boolean=true;
+
+  products: Product[] = []
 
 
-  ]
-
-  constructor() { }
+  constructor(public productService: ProductServiceService, private router: Router) { }
 
   ngOnInit(): void {
+    this.products = this.productService.getProducts()
+    console.log(this.productService.getProducts())
+    
+
+
   }
 
-  specificDisplay(index:number){
-    if(index){
-     console.log(index)
-    }
- }
+
+  // productInfo(index: any) {
+  //   this.productService.productInfo(index);
+  // }
+
+  specificDisplay(index: any) {
+    let productid = this.products[index];
+    console.log(productid);
+  }
+
+  navigateProductDetail(id: string) { this.router.navigate(['/product-detail', id]) }
 
 }

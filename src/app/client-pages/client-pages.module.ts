@@ -16,11 +16,13 @@ import { RouterModule } from '@angular/router';
 import { AuthModule } from '../auth/auth.module';
 import { ContactComponent } from './contact/contact.component';
 import { BsModalService, ModalModule } from 'ngx-bootstrap/modal';
-import { HomeFeaturesComponent } from './home-features/home-features.component';
-import { HomeProductsComponent } from './home-products/home-products.component';
-import { HomeBestsellerComponent } from './home-bestseller/home-bestseller.component';
+import { HomeBestsellerComponent } from './home/home-bestseller/home-bestseller.component';
 import { TestimonialComponent } from './testimonial/testimonial.component';
-import { HomeCarouselComponent } from './home-carousel/home-carousel.component';
+import { HomeCarouselComponent } from './home/home-carousel/home-carousel.component';
+import { HomeFeaturesComponent } from './home/home-features/home-features.component';
+import { HomeProductsComponent } from './home/home-products/home-products.component';
+
+
 
 @NgModule({
   declarations: [
@@ -31,10 +33,10 @@ import { HomeCarouselComponent } from './home-carousel/home-carousel.component';
     ProductsComponent,
     HeaderComponent,
     FooterComponent,
-    LayoutComponent,
-    ContactComponent,
     HomeFeaturesComponent,
     HomeProductsComponent,
+    LayoutComponent,
+    ContactComponent,
     HomeBestsellerComponent,
     TestimonialComponent,
     HomeCarouselComponent,

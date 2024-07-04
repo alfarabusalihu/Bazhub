@@ -85,7 +85,7 @@
               </div>
               <div class="row g-4">
                   <div class="col-lg-3">
-                      <div class="row g-4">
+                      <!-- <div class="row g-4">
                           <div class="col-lg-12">
                               <div class="mb-3">
                                   <h4>Categories</h4>
@@ -170,20 +170,11 @@
                                           <i class="fa fa-star text-secondary"></i>
                                           <i class="fa fa-star"></i>
                                       </div>
-                                      <div class="d-flex mb-2">
-                                          <h5 class="fw-bold me-2">2.99 $</h5>
-                                          <h5 class="text-danger text-decoration-line-through">4.11 $</h5>
+                                      <div class="d-flex mb-2" >
+                                          <h5 class="fw-bold me-2">2.99 Rs.</h5>
+                                          <h5 class="text-danger text-decoration-line-through">4.11 Rs.</h5> 
+                                       
                                       </div>
-                                      <div class="row" *ngFor="let i=index;let detail=PhoneSpecifics;">
-                                        <div class="col-md-6">
-                                            <h1>
-                                                {{detail.model}}
-                                            </h1>
-                                            <p>
-                                                {{detail.features}}
-                                            </p>
-                                        </div>
-                                    </div>
                                   </div>
                               </div>
                               <div class="d-flex align-items-center justify-content-start">
@@ -200,8 +191,8 @@
                                           <i class="fa fa-star"></i>
                                       </div>
                                       <div class="d-flex mb-2">
-                                          <h5 class="fw-bold me-2">2.99 $</h5>
-                                          <h5 class="text-danger text-decoration-line-through">4.11 $</h5>
+                                          <h5 class="fw-bold me-2">2.99 Rs.</h5>
+                                          <h5 class="text-danger text-decoration-line-through">4.11 Rs.</h5>
                                       </div>
                                   </div>
                               </div>
@@ -219,8 +210,8 @@
                                           <i class="fa fa-star"></i>
                                       </div>
                                       <div class="d-flex mb-2">
-                                          <h5 class="fw-bold me-2">2.99 $</h5>
-                                          <h5 class="text-danger text-decoration-line-through">4.11 $</h5>
+                                          <h5 class="fw-bold me-2">2.99 Rs.</h5>
+                                          <h5 class="text-danger text-decoration-line-through">4.11 Rs.</h5>
                                       </div>
                                   </div>
                               </div>
@@ -236,106 +227,39 @@
                                   </div>
                               </div>
                           </div>
-                      </div>
+                      </div> -->
                   </div>
                   <div class="col-lg-9">
                       <div class="row g-4 justify-content-center">
-                          <div class="col-md-6 col-lg-6 col-xl-4">
-                              <div class="rounded position-relative fruite-item">
+                          <div class="col-md-6 col-lg-6 col-xl-4" *ngFor="let i=index;let product of products;" (click)="navigateProductDetail(product.id)">
+                              
+                              <div class="rounded position-relative fruite-item" >
                                   <div class="fruite-img">
-                                      <img src="assets/images/New folder/apple-iphone-15.jpg" class="img-fluid w-100 rounded-top" alt="">
+                                      <img [src]="product.image" class="img-fluid w-100 rounded-top" alt="">
                                   </div>
                                   <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Phones</div>
-                                  <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                      <h4>Apple</h4>
-                                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
+                                  <div class="p-4 border border-secondary border-top-0 rounded-bottom" >
+                                      
+                                      <h4>
+                                        {{product.category}}
+                                      </h4>
+                                      <p>
+                                          {{product.shortDescription}}
+                                      </p>
+                                      <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p> -->
                                       <div class="d-flex justify-content-between flex-lg-wrap">
-                                          <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
-                                          <a [routerLink]="['/cart']"  class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                          <p class="text-dark fs-5 fw-bold mb-0">{{product.unitPrice | currency: 'LKR' :'Rs. ' }}</p>
+                                          <button 
+                                           (click)="specificDisplay(i)">
+                                            <!-- <a [routerLink]="['/cart']" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i>
+                                            </a>  -->
+                                            Add to cart
+                                            </button>
                                       </div>
                                   </div>
                               </div>
                           </div>
-                          <div class="col-md-6 col-lg-6 col-xl-4">
-                              <div class="rounded position-relative fruite-item">
-                                  <div class="fruite-img">
-                                      <img src="assets/images/New folder/samsung-galaxy-c55.jpg" class="img-fluid w-100 rounded-top" alt="">
-                                  </div>
-                                  <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Phones</div>
-                                  <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                      <h4>Samsung</h4>
-                                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
-                                      <div class="d-flex justify-content-between flex-lg-wrap">
-                                          <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
-                                          <a [routerLink]="['/cart']" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="col-md-6 col-lg-6 col-xl-4">
-                              <div class="rounded position-relative fruite-item">
-                                  <div class="fruite-img">
-                                      <img src="assets/images/New folder/xiaomi-redmi-13.jpg" class="img-fluid w-100 rounded-top" alt="">
-                                  </div>
-                                  <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Phones</div>
-                                  <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                      <h4>Xiaomi</h4>
-                                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
-                                      <div class="d-flex justify-content-between flex-lg-wrap">
-                                          <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
-                                          <a [routerLink]="['/cart']"  class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="col-md-6 col-lg-6 col-xl-4">
-                              <div class="rounded position-relative fruite-item">
-                                  <div class="fruite-img">
-                                      <img src="assets/images/New folder/sony-xperia-1-v.jpg" class="img-fluid w-100 rounded-top" alt="">
-                                  </div>
-                                  <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Phones</div>
-                                  <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                      <h4>Sony</h4>
-                                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
-                                      <div class="d-flex justify-content-between flex-lg-wrap">
-                                          <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
-                                          <a [routerLink]="['/cart']"  class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="col-md-6 col-lg-6 col-xl-4">
-                              <div class="rounded position-relative fruite-item">
-                                  <div class="fruite-img">
-                                      <img src="assets/images/New folder/huawei-pura70.jpg" class="img-fluid w-100 rounded-top" alt="">
-                                  </div>
-                                  <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Phones</div>
-                                  <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                      <h4>Huawei</h4>
-                                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
-                                      <div class="d-flex justify-content-between flex-lg-wrap">
-                                          <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
-                                          <a [routerLink]="['/cart']"  class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="col-md-6 col-lg-6 col-xl-4">
-                              <div class="rounded position-relative fruite-item">
-                                  <div class="fruite-img">
-                                      <img src="assets/images/New folder/nokia-215-4g.jpg" class="img-fluid w-100 rounded-top" alt="">
-                                  </div>
-                                  <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Phones</div>
-                                  <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                      <h4>Nokia</h4>
-                                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
-                                      <div class="d-flex justify-content-between flex-lg-wrap">
-                                          <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
-                                          <a [routerLink]="['/cart']"  class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
+                         
                           <div class="col-12">
                               <div class="pagination d-flex justify-content-center mt-5">
                                   <a href="#" class="rounded">&laquo;</a>
