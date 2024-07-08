@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
   
 })
 export class AppComponent {
-  title = 'Baz-Hub';
+  title = 'easy-buy-web';
 }

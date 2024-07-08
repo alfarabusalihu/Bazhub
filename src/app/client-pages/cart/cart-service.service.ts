@@ -6,16 +6,16 @@ import { CartItem } from '../shared/interfaces/cart.interface';
 })
 export class CartServiceService {
 
-  cartItems: CartItem[] = [
-    {
-      id:"2",
-      name:"rety",
-      unitPrice:230000,
-      qty:3,
-    },
+  private cartItems: CartItem[] = [
+    // {
+    //   id:"2",
+    //   name:"rety",
+    //   unitPrice:230000,
+    //   qty:3,
+    // },
   ];
 
-  cartUpdate:CartItem[]=[]
+  // cartUpdate:CartItem[]=[]
 
   constructor() {}
 
@@ -23,13 +23,12 @@ export class CartServiceService {
     const item=this.cartItems.find(cartItem=>cartItem.id==data.id)
     if(item) {
       item.qty=item.qty+data.qty
-      // item.qty=data.qty;
     }else{
       this.cartItems.push(data);
       this.saveCart();
     }
-    console.log(item);
-    console.log(this.cartItems);
+    // console.log(item);
+    // console.log(this.cartItems);
   }
 
   getCartItems(){ return this.cartItems; }
@@ -38,9 +37,9 @@ export class CartServiceService {
    localStorage.setItem('cart',JSON.stringify(this.cartItems));
    }
 
-   saveUpdate(){
-    localStorage.setItem('cartUpdate',JSON.stringify(this.cartUpdate));
-    }
+  //  saveUpdate(){
+  //   localStorage.setItem('cartUpdate',JSON.stringify(this.cartUpdate));
+  //   }
 
    deleteCart(items:CartItem){
     const deleteItem=this.cartItems.find(item=>item.id==items.id)

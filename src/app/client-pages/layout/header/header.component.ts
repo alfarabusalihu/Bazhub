@@ -12,15 +12,19 @@ export class HeaderComponent implements OnInit {
 
   searchModalRef: BsModalRef;
   cartItemCount:number;
+  cartData:CartItem[];
 
   constructor(private _bms: BsModalService,private cartservice:CartServiceService) { }
 
-  ngOnInit(): void {
-    this.cartItemCount=this.cartservice.cartItems.length;
-  }
-
+  ngOnInit(): void { }
+  
   showSearchModal(template: TemplateRef<any>){
     this.searchModalRef = this._bms.show(template, { class: 'modal-fullscreen' });
     console.log(template)
+  }
+  
+  getCartCount(){
+   const cartItems = this.cartservice.getCartItems();
+   return cartItems.length
   }
 }

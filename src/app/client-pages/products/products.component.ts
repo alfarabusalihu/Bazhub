@@ -3,6 +3,8 @@ import { PhoneSpecifics } from 'src/app/shared/interfaces/user.interface';
 import { ProductServiceService } from '../product-service.service';
 import { Router } from '@angular/router';
 import { Product } from '../shared/interfaces/product.interface';
+import { CartItem } from '../shared/interfaces/cart.interface';
+import { CartServiceService } from '../cart/cart-service.service';
 
 @Component({
   selector: 'app-products',
@@ -14,16 +16,28 @@ export class ProductsComponent implements OnInit {
   // productInterface:boolean=true;
 
   products: Product[] = []
+  cartData:CartItem;
+  productItem:Product;
 
 
-  constructor(public productService: ProductServiceService, private router: Router) { }
+  constructor(public productService: ProductServiceService, public cartService:CartServiceService, private router: Router) { }
 
   ngOnInit(): void {
-    this.products = this.productService.getProducts()
-    console.log(this.productService.getProducts())
     
+    this.products = this.productService.getProducts()
+    //console.log(this.productService.getProducts())
+  }
 
-
+  
+  addToCart(item:Product){
+    const data:CartItem={
+      id: item.id,
+      name: item.name,
+      unitPrice: item.unitPrice,
+      qty:1,
+    }
+    this.cartService.addToCart(data)
+    console.log("data",data)
   }
 
 

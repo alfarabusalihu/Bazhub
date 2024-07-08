@@ -19,8 +19,9 @@ export class CartComponent implements OnInit {
 
   ngOnInit(): void {
     this.productData = JSON.parse(JSON.stringify(this.cartService.getCartItems())); 
-     console.log("data: ",this.productData,"cart",this.cartService.getCartItems());
+    //  console.log("data: ",this.productData,"cart",this.cartService.getCartItems());
     this.calculateTotal();
+    
   }
 
   deleteItem(index:number){
@@ -36,17 +37,9 @@ export class CartComponent implements OnInit {
   }
 
   updateCart(){
-     let i=this.cartService.cartItems;
-    //this.productData==i
-    if(this.productData==this.cartService.cartItems){
-      console.log('success')
-    }else{
-      confirm('Do you want to update your cart?');
-      this.productData=this.cartService.cartItems;
-      this.productData=this.cartService.cartUpdate;
-      this.cartService.saveUpdate();
-      console.log('p.data=',this.productData,'cart=',i);
-    }
+    this.cartService.setCartItems(this.productData)
+    console.log(this.cartService.getCartItems())
+
   }
   
   // sumProducts(item:CartItem){

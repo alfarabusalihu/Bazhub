@@ -11,7 +11,7 @@ export class ProductServiceService {
 
   private name: string;
 
-  products: Product[] = [
+  private products: Product[] = [
     {
       id: '1',
       name: "iPhone 15 pro Max",

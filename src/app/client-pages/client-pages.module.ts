@@ -10,7 +10,7 @@ import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { LayoutComponent } from './layout/layout.component';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthRoutingModule } from '../auth/auth-routing.module';
 import { RouterModule } from '@angular/router';
 import { AuthModule } from '../auth/auth.module';
@@ -48,6 +48,7 @@ import { HomeProductsComponent } from './home/home-products/home-products.compon
     AuthRoutingModule,
     ClientPagesRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     CarouselModule.forRoot(),
     ModalModule.forChild()
   ],

@@ -28,6 +28,7 @@ export class ProductDetailComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       this.productId = params.get('id');
       if (this.productId) this.productData = this.productService.getProduct(this.productId);
+      console.log(this.productData)
     })
 
   }
@@ -37,43 +38,6 @@ export class ProductDetailComponent implements OnInit {
     if(value === 'false' && this.quantity > 1) {
       this.quantity-this.quantity--;}
   }
-
-  // quantityIncrease() {
-  //   this.route.paramMap.subscribe(values => {
-  //     let id = values.get('id');
-
-  //     if (id) {
-  //       let quantity = this.productService.getProduct(id);
-  //       if (quantity) {
-  //         quantity.quantity++;
-  //       }
-  //     }
-  //   })
-  // }
-
-  // quantityDecrease() {
-  //   this.route.paramMap.subscribe(values => {
-  //     let id = values.get('id');
-
-  //     if (id) {
-  //       let quantity = this.productService.getProduct(id);
-  //       if (quantity) {
-  //         quantity.quantity--;
-  //       }
-  //     }
-
-  //   })
-  // }
-
-  // cartDetail() {
-  //   if (this.productData) {
-  //     this.cartService.addedProducts(this.productData);
-  //     if (this.productData.id == this.productData.id) {
-  //       this.productData.quantity++;
-  //     }
-  //     console.log(this.cartService)
-  //   }
-  // }
 
   addToCart(){
     const data:CartItem={
