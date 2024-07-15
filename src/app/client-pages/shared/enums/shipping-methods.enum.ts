@@ -1,0 +1,5 @@
+export enum ShippingMethodsEnum{
+    SHIPPING_FEE="SHIPPING_FEE",
+    FREE_SHIPPING="FREE_SHIPPING",
+    LOCAL_PICKUP="LOCAL_PICKUP"
+}

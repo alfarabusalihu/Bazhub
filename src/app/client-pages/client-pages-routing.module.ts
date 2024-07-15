@@ -7,6 +7,7 @@ import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { PageNotFoundComponent } from '../shared/components/page-not-found/page-not-found.component';
 import { ContactComponent } from './contact/contact.component';
+import { TestimonialComponent } from './testimonial/testimonial.component';
 
 const routes: Routes = [
   {
@@ -35,9 +36,14 @@ const routes: Routes = [
     component: CartComponent,
   },
   {
+    path: 'testimonial',
+    component: TestimonialComponent,
+  },
+  {
     path: 'checkout',
     component: CheckoutComponent,
   },
+
   {
     path: 'contact',
     component: ContactComponent,

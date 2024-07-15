@@ -21,6 +21,7 @@ import { TestimonialComponent } from './testimonial/testimonial.component';
 import { HomeCarouselComponent } from './home/home-carousel/home-carousel.component';
 import { HomeFeaturesComponent } from './home/home-features/home-features.component';
 import { HomeProductsComponent } from './home/home-products/home-products.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
@@ -46,6 +47,7 @@ import { HomeProductsComponent } from './home/home-products/home-products.compon
     RouterModule,
     AuthModule,
     AuthRoutingModule,
+    NgxPaginationModule,
     ClientPagesRoutingModule,
     FormsModule,
     ReactiveFormsModule,

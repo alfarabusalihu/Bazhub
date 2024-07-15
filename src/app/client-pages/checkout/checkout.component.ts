@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CartItem } from '../shared/interfaces/cart.interface';
 import { CartServiceService } from '../cart/cart-service.service';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import { PaymentMethodsEnum, ShippingMethodsEnum } from '../shared/enums';
+import { Order } from 'src/app/shared/interfaces/order.interface';
 
 @Component({
   selector: 'app-checkout',
@@ -11,12 +13,15 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class CheckoutComponent implements OnInit {
   productData:CartItem[];
 
-  orderedItems:[]=[]
+  orderedItems:Order[]=[]
+  submitted=false;
   subTotal: number;
   shippingFee: number = 300;
-  fullTotal:string;
-  shippingMethodEnum=shippingMethod;
-
+  localPickup:number= 100;
+  fullTotal:number;
+  
+  shippingMethods = ShippingMethodsEnum;
+  paymentMethods = PaymentMethodsEnum;
 
   // Checkout Form
     // billingDetailsForm - Mandatory
@@ -26,20 +31,20 @@ export class CheckoutComponent implements OnInit {
 
   checkoutForm: FormGroup = new FormGroup({
     billingDetails: new FormGroup({
-      firstName: new FormControl('', Validators.required, ),
-      lastName: new FormControl(''),
-      companyName: new FormControl('', Validators.maxLength(5)),
-      city: new FormControl(''),
-      country: new FormControl(''),
-      zipCode: new FormControl(''),
-      mobile: new FormControl(''),
-      address: new FormControl(''),
-      email: new FormControl('', Validators.email)
+      firstName: new FormControl('',[Validators.required, Validators.minLength(4)]),
+      lastName: new FormControl('',[Validators.required]),
+      companyName: new FormControl('',[Validators.required, Validators.maxLength(15)]),
+      city: new FormControl('',[Validators.required]),
+      country: new FormControl('',[Validators.required]),
+      zipCode: new FormControl('', [Validators.required]),
+      mobile: new FormControl('', [Validators.required]),
+      address: new FormControl('',[Validators.required]),
+      email: new FormControl('',[Validators.required, Validators.email])
     }),
     finalTotal: new FormControl(0),
     products: new FormControl([]),
-    shippingMethod: new FormControl('',Validators.required,),
-    paymentMethod: new FormControl('',Validators.required,),
+    shippingMethod: new FormControl(ShippingMethodsEnum.SHIPPING_FEE),
+    paymentMethod: new FormControl(PaymentMethodsEnum.BANK_TRANSFER),
   })
 
   // shippingMethods
@@ -63,46 +68,88 @@ export class CheckoutComponent implements OnInit {
   // }
   // })
 
-  constructor(private cartService:CartServiceService) { }
+  constructor(private cartService:CartServiceService) { 
+    
+  }
 
   ngOnInit(): void {
     this.productData = JSON.parse(JSON.stringify(this.cartService.getCartItems())); 
     this.checkoutForm.patchValue({ products: this.productData });
-    this.calculateTotal();
+
+    this.calculateSubtotal();
+
+    const shippingMethod=this.checkoutForm.get("shippingMethod");
+    this.calculateTotal(shippingMethod.value);
+
+    console.log( "shippping", shippingMethod);
+
+    this.checkoutForm.get("shippingMethod").valueChanges.subscribe((res: ShippingMethodsEnum)=>{
+      this.calculateTotal(res)
+    })
+
+
+  }
+  
+  // get firstName(){
+  //   return this.checkoutForm.get("billingDetails.firstName");
+  // }
+
+  checkValidity(formControlName:string){
+    return this.checkoutForm.get(formControlName).invalid && 
+    (this.checkoutForm.get(formControlName).dirty || this.checkoutForm.get(formControlName).touched)
   }
 
-  calculateTotal(){
-    let subTotal=0;
 
+  onReset(): void {
+    this.submitted = false;
+    this.checkoutForm.reset();
+  }
+
+
+  calculateSubtotal(){
+    this.subTotal = 0;
     this.productData.forEach((item)=>{
       // console.log("calculateTotal=",item);
       let total=item.qty*item.unitPrice;
       // console.log("Total=",total);
-      subTotal=subTotal+total;
+      this.subTotal = this.subTotal + total;
     })
-
-    this.subTotal = subTotal;
-    // console.log("Sub Total=",subTotal);
-    return subTotal;
   }
 
   formValue(){
-   let fraud= this.checkoutForm.value
-   
+   let fraud= this.checkoutForm.value 
   }
 
   onSubmit(){
-    console.log("form submit", this.checkoutForm.value)
+    if (this.checkoutForm.valid) {
+     console.log("form submit", this.checkoutForm.value);
+    }
     
+    this.orderedItems=this.checkoutForm.value;
+    console.log("Ordereditems=",this.orderedItems)   
   }
+
+  calculateTotal(shippingMethod:ShippingMethodsEnum){
+    let finalTotal=0 
+    if (shippingMethod == ShippingMethodsEnum.FREE_SHIPPING){
+      finalTotal = this.subTotal + 0
+    }
+    else if(shippingMethod == ShippingMethodsEnum.SHIPPING_FEE) {
+      finalTotal = this.subTotal + this.shippingFee;
+    }
+    else if(shippingMethod == ShippingMethodsEnum.LOCAL_PICKUP){
+      finalTotal = this.subTotal + this.localPickup;
+    }
+
+    this.checkoutForm.patchValue({ finalTotal: finalTotal });
+    this.fullTotal=finalTotal;
+
+    console.log("calculateTotal:",shippingMethod,finalTotal);
+  }
+
+  
 }
 
-   export enum shippingMethod{
-    shippingFee="shipping_Fee",
-    freeShipping="free_Shipping",
-    localRate="local_rate"
-    
-  }
 
 
 

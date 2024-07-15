@@ -14,7 +14,7 @@ import { CartServiceService } from '../cart/cart-service.service';
 export class ProductsComponent implements OnInit {
 
   // productInterface:boolean=true;
-
+  p: number = 1;
   products: Product[] = []
   cartData:CartItem;
   productItem:Product;

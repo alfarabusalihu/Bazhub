@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormControl, FormControlName, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/shared/interfaces/user.interface';
 
@@ -8,6 +9,13 @@ import { User } from 'src/app/shared/interfaces/user.interface';
   styleUrls: ['./sign-up.component.scss']
 })
 export class SignUpComponent implements OnInit {
+
+  userRegistrationForm:FormGroup = new FormGroup({
+    email:new FormControl('', [Validators.required, Validators.email]),
+    username:new FormControl('',[Validators.required]),
+    password:new FormControl('',[Validators.required]),
+    confirmPassword:new FormControl('',[Validators.required]),
+  });
 
 
   isFieldEmpty:boolean=false
@@ -26,10 +34,6 @@ export class SignUpComponent implements OnInit {
   password:string='';
 
   constructor(private router:Router) { }
-
-  
-
-
 
   ngOnInit(): void {
       if(this.users){
@@ -52,16 +56,28 @@ export class SignUpComponent implements OnInit {
       }
 
       let newUserDetail=this.userAutheticationDetails.push(newUser);
-      this.router.navigate(['profile'])
+      this.router.navigate(['/profile'])
       console.log(newUserDetail)
       }
       else{
         alert('Fields shouldnt be empty at all')
         // this.isFieldEmpty=true;
       }
-      
-
-
       }
+
+      
+    onSubmit(){
+      this.userRegistrationForm.value
+      console.log(this.userRegistrationForm.get('username'))
+
+    }
+
+    userValidation(data:string){
+      // let folwer=this.userRegistrationForm.get(data)
+      // console.log('folwer',folwer);
+      // return folwer;
+        return this.userRegistrationForm.get(data).invalid && 
+        (this.userRegistrationForm.get(data).dirty || this.userRegistrationForm.get(data).touched) 
+    }
 
 }

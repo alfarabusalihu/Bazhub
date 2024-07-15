@@ -1,55 +1,82 @@
 <div class="container-fluid py-5">
     <div class="container py-5">
         <h1 class="mb-4">Billing details</h1>
-        <form action="#" [formGroup]="checkoutForm" (submit)="onSubmit()">
+        <form action="#" [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
             <div class="row g-5">
                 <div class="col-md-12 col-lg-6 col-xl-7" formGroupName="billingDetails">
                     <div class="row">
                         <div class="col-md-12 col-lg-6">
                             <div class="form-item w-100">
                                 <label class="form-label my-3">First Name<sup>*</sup></label>
-                                <input id="first-name" type="text" class='form-control' formControlName="firstName">
+                                <input id="first-name" 
+                                type="text" 
+                                class='form-control' 
+                                name="firstName" 
+                                formControlName="firstName">
+                                <span *ngIf="checkValidity('billingDetails.firstName') && checkoutForm.get('billingDetails.firstName').errors?.required" style="color: red;">
+                                    First name is mandatory.
+                                </span>
                             </div>
-                        </div>
+                         </div> 
                         <div class="col-md-12 col-lg-6">
                             <div class="form-item w-100">
                                 <label class="form-label my-3">Last Name<sup>*</sup></label>
                                 <input type="text" class="form-control" formControlName="lastName">
+                                <span *ngIf="checkValidity('billingDetails.lastName') && checkoutForm.get('billingDetails.lastName').errors?.required" style="color: red;">
+                                    Last name is mandatory.
+                                </span>
                             </div>
                         </div>
 
                         <div class="form-item">
                             <label class="form-label my-3">Company Name<sup>*</sup></label>
                             <input id="company-name" type="text" formControlName="companyName" class="form-control">
+                            <span *ngIf="checkValidity('billingDetails.companyName') && checkoutForm.get('billingDetails.companyName').errors?.required" style="color: red;">
+                                Company name is mandatory.
+                            </span>
                         </div>
                         <div class="form-item">
                             <label class="form-label my-3">Town/City<sup>*</sup></label>
                             <input id="city" type="text" formControlName="city" class="form-control">
+                            <span *ngIf="checkValidity('billingDetails.city') && checkoutForm.get('billingDetails.city').errors?.required" style="color: red;">
+                                City is mandatory.
+                            </span>
                         </div>
                         <div class="form-item">
                             <label class="form-label my-3">Country<sup>*</sup></label>
                             <input id="country" type="text" formControlName="country" class="form-control">
+                            <span *ngIf="checkValidity('billingDetails.country') && checkoutForm.get('billingDetails.country').errors?.required" style="color: red;">
+                                Country is mandatory.
+                            </span>
                         </div>
                         <div class="form-item">
                             <label class="form-label my-3">Postcode/Zip<sup>*</sup></label>
                             <input id="zip" type="text" formControlName="zipCode" class="form-control">
+                            <span *ngIf="checkValidity('billingDetails.zipCode') && checkoutForm.get('billingDetails.zipCode').errors?.required" style="color: red;">
+                                Postcode/Zip is mandatory.
+                            </span>
                         </div>
                         <div class="form-item">
                             <label class="form-label my-3">Mobile<sup>*</sup></label>
                             <input id="mobile" type="text" formControlName="mobile" class="form-control">
+                            <span *ngIf="checkValidity('billingDetails.mobile') && checkoutForm.get('billingDetails.mobile').errors?.required" style="color: red;">
+                                Mobile number is mandatory.
+                            </span>
                         </div>
                         <div class="form-item">
                             <label class="form-label my-3">Address <sup>*</sup></label>
                             <input type="text" class="form-control" id="address" formControlName="address">
+                            <span *ngIf="checkValidity('billingDetails.address') && checkoutForm.get('billingDetails.address').errors?.required" style="color: red;">
+                                Address is mandatory.
+                            </span>
                         </div>
                         <div class="form-item">
                             <label class="form-label my-3">Email Address<sup>*</sup></label>
                             <input id="email" type="email" formControlName="email" class="form-control">
+                            <span *ngIf="checkValidity('billingDetails.email') && checkoutForm.get('billingDetails.email').errors?.required" style="color: red;">
+                                Email Address is mandatory.
+                            </span>
                         </div>
-                        <p>Complete the form to enable button.</p>
-                        <!-- <button class="form-control" type="submit" (click)="formValue()" [disabled]="!billingDetails.valid">Submit</button> -->
-
-
                     </div>
                 </div>
                 <div class="col-md-12 col-lg-6 col-xl-5">
@@ -87,7 +114,7 @@
                                     </td>
                                     <td class="py-5">
                                         <div class="py-3 border-bottom border-top">
-                                            <p class="mb-0 text-dark"> {{ calculateTotal() |currency: 'LKR' :'Rs. ' }}
+                                            <p class="mb-0 text-dark"> {{ subTotal |currency: 'LKR' :'Rs. ' }}
                                             </p>
                                         </div>
                                     </td>
@@ -98,22 +125,22 @@
                                     <td class="py-5">
                                         <p class="mb-0 text-dark py-4">Shipping</p>
                                     </td>
-                                    <td colspan="3" class="py-5">
-                                        <div class="form-group radio text-start">
+                                    <td colspan="3" class="py-5" >
+                                        <div class="form-check text-start">
                                             <input type="radio" class="form-check-input bg-primary border-0"
-                                                id="Shipping-1" name="shippingMethod" value="free shipping" formControlName="shippingMethod">
-                                            <label class="form-check-label" for="Shipping-1">Free Shipping</label>
+                                                id="freeShipping" [value]="shippingMethods.FREE_SHIPPING" formControlName="shippingMethod">
+                                            <label class="form-check-label" for="freeShipping">Free Shipping</label>
                                         </div>
                                         <div class="form-check text-start">
                                             <input type="radio" class="form-check-input bg-primary border-0"
-                                                id="Shipping-2" name="shippingMethod" value="flat rate" formControlName="shippingMethod" >
-                                            <label class="form-check-label" for="Shipping-2">{{ shippingFee | currency :
+                                                id="shippingFee" [value]="shippingMethods.SHIPPING_FEE" formControlName="shippingMethod">
+                                            <label class="form-check-label" for="shippingFee">{{ shippingFee | currency :
                                                 "LKR" : "Rs. "}}</label>
                                         </div>
                                         <div class="form-check text-start">
                                             <input type="radio" class="form-check-input bg-primary border-0"
-                                                id="Shipping-3" name="shippingMethod" value="local pickup" formControlName="shippingMethod">
-                                            <label class="form-check-label" for="Shipping-3">Local Pickup:
+                                                id="localPickup" [value]="shippingMethods.LOCAL_PICKUP" formControlName="shippingMethod">
+                                            <label class="form-check-label" for="localPickup">Local Pickup:
                                                 Rs.100.00</label>
                                         </div>
                                     </td>
@@ -126,9 +153,9 @@
                                     </td>
                                     <td class="py-5"></td>
                                     <td class="py-5"></td>
-                                    <td class="py-5">
+                                    <td class="py-6">
                                         <div class="py-4 border-bottom border-top" type="text" value="fullTotal" >
-                                            <p class="mb-0 text-dark">{{shippingFee + calculateTotal() | currency:
+                                            <p class="mb-0 text-dark">{{ fullTotal | currency:
                                                 "LKR" : "Rs. "}}</p>
                                         </div>
                                     </td>
@@ -140,9 +167,10 @@
                     <div >
                         <div class="row g-4 text-center align-items-center justify-content-center border-bottom py-3">
                             <div class="col-12">
-                                <div class="form-check text-start my-3">
+                                <div class="form-group radio text-start my-3">
                                     <input type="radio" class="form-check-input bg-primary border-0" id="Transfer-1"
-                                        name="paymentMethod" value="bank tranfer" formControlName="paymentMethod">
+                                        name="paymentMethod" [value]="paymentMethods.BANK_TRANSFER" formControlName="paymentMethod"
+                                        >
                                     <label class="form-check-label" for="Transfer-1">Direct Bank Transfer</label>
                                 </div>
                                 <p class="text-start text-dark">Make your payment directly into our bank account. Please
@@ -152,27 +180,18 @@
                         </div>
                         <div class="row g-4 text-center align-items-center justify-content-center border-bottom py-3">
                             <div class="col-12">
-                                <div class="form-check text-start my-3">
-                                    <input type="radio" class="form-check-input bg-primary border-0" id="Payments-1"
-                                        name="paymentMethod" value="Payments" formControlName="paymentMethod">
-                                    <label class="form-check-label" for="Payments-1">Check Payments</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row g-4 text-center align-items-center justify-content-center border-bottom py-3">
-                            <div class="col-12">
-                                <div class="form-check text-start my-3">
+                                <div class="form-check radio text-start my-3">
                                     <input type="radio" class="form-check-input bg-primary border-0" id="Delivery-1"
-                                        name="paymentMethod" value="Delivery" formControlName="paymentMethod">
+                                        name="paymentMethod" [value]="paymentMethods.CASH_ON_DELIVERY" formControlName="paymentMethod">
                                     <label class="form-check-label" for="Delivery-1">Cash On Delivery</label>
                                 </div>
                             </div>
                         </div>
                         <div class="row g-4 text-center align-items-center justify-content-center border-bottom py-3">
                             <div class="col-12">
-                                <div class="form-check text-start my-3">
+                                <div class="form-check radio  text-start my-3">
                                     <input type="radio" class="form-check-input bg-primary border-0" id="Paypal-1"
-                                        name="paymentMethod" value="Paypal" formControlName="paymentMethod">
+                                        name="paymentMethod" [value]="paymentMethods.PAYPAL" formControlName="paymentMethod">
                                     <label class="form-check-label" for="Paypal-1">Paypal</label>
                                 </div>
                             </div>
@@ -181,7 +200,8 @@
                     <div class="row g-4 text-center align-items-center justify-content-center pt-4">
                         <button type="submit" (click)="formValue()" [disabled]="!checkoutForm.valid"
                             class="btn border-secondary py-3 px-4 text-uppercase w-100 text-primary">Place Order</button>
-                    </div>
+                            <p>Complete the billing form to place an Order</p>
+                        </div>
                 </div>
             </div>
         </form>

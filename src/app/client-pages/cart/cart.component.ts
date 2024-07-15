@@ -10,6 +10,7 @@ import { CartItem } from '../shared/interfaces/cart.interface';
 })
 export class CartComponent implements OnInit {
   productData:CartItem[];
+  // cartItemss:CartItem[];
   
   subTotal: number;
   shippingFee: number = 300;
@@ -42,17 +43,6 @@ export class CartComponent implements OnInit {
 
   }
   
-  // sumProducts(item:CartItem){
-  //   this.sum=0
-  //   let cartProducts=[];
-  //   let total=item.qty*item.unitPrice;
-  //   cartProducts.push(total);
-
-  //   for(let i=0;i<cartProducts.length;i++){
-  //     this.sum=this.sum+cartProducts[i]
-  //   }
-  //   console.log(this.sum);
-  // }
   calculateTotal(){
     let subTotal=0;
 

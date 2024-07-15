@@ -6,5 +6,4 @@ export interface Product{
     shortDescription:string;
     description:string; 
     image:string;
-
 }

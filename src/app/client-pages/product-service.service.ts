@@ -7,41 +7,56 @@ import { Product } from './shared/interfaces/product.interface';
 @Injectable({
   providedIn: 'root'
 })
+
+
 export class ProductServiceService {
 
   private name: string;
 
+
+  categories:any = [
+    { id: '1', name: "Main 1", parent: null },
+    { id: '2', name: "Sub 1", parent: 1 },
+    { id: '3', name: "Sub 2", parent: 1 },
+    { id: '4', name: "Main 2", parent: null },
+    { id: '5', name: "Main 3", parent: null },
+    { id: '6', name: "Sub 1", parent: 5 },
+  ]
+
+  // categories: any = [
+  //   {
+  //     id: 'Main 1',
+  //     name: "",
+  //     categories: [
+  //       {
+  //         id: 'Sub 1',
+  //         name: "",
+  //       },
+  //       {
+  //         id: 'Sub 2',
+  //         name: "",
+  //       }
+  //     ]
+  //   },
+  //   {      
+  //     id: 'Main 2',
+  //     name: "",
+  //     categories: [
+  //       {
+  //         id: 'Sub 1',
+  //         name: "",
+  //       },
+  //     ]
+  //   },
+  //   {
+  //     id: 'Main 3',
+  //     name: "",
+  //     categories: []
+  //   }
+  // ]
+
   private products: Product[] = [
-    {
-      id: '1',
-      name: "iPhone 15 pro Max",
-      category:'Phones',
-      unitPrice: 320000.00,
-      shortDescription: 'Ram:8Gb, Hardisk:256Gb',
-      description: "To redo something youve undone, press CtrlY or F4. If  doesnt seem to work, you mayneed to press the key or Fn Key, then F4 on your keyboard, or select Redo on the Quick Access toolbar.",
-      image: 'https://placehold.co/600x400',
-
-    },
-    {
-      id: '2',
-      name: "iPhone 15 pro",
-      category:'Phones',
-      unitPrice: 300000.00,
-      shortDescription: 'Ram:8Gb, Hardisk:256Gb',
-      description: "To redo something youve undone, press CtrlY or F4. If  doesnt seem to work, you mayneed to press the key or Fn Key, then F4 on your keyboard, or select Redo on the Quick Access toolbar.",
-      image: 'https://placehold.co/600x400'
-    },
-    {
-      id: '3',
-      name: "iPhone 15 ",
-      category:'Phones',
-      unitPrice: 400000.00,
-      shortDescription: 'Ram:8Gb, Hardisk:256Gb',
-      description: "To redo something youve undone, press CtrlY or F4. If  doesnt seem to work, you mayneed to press the key or Fn Key, then F4 on your keyboard, or select Redo on the Quick Access toolbar.",
-      image: 'https://placehold.co/600x400'
-    },
-
-
+    
   ]
 
   constructor(private http: HttpClientModule, public router: Router) { }

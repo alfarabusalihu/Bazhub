@@ -1,33 +1,73 @@
-<!-- <p>sign-up works!</p> -->
- <form class="bg-secondary text-dark p-5 rounded">
-
-    <h3 class="bg-dark text-secondary rounded p-2">User authentication</h3>
+<div class="container mt-5 py-5">
+ <!-- <form [formGroup]="userRegistrationForm" class="bg-light text-dark p-5 rounded">
+    <h3>SignUp</h3>
     <div class="mb-3">
       <label for="exampleInputEmail1" class="form-label">Email address</label>
-      <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" [(ngModel)]="email">
+      <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="email" [(ngModel)]="email">
       <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
     </div>
     <div class="mb-3">
-      <label for="exampleInputPassword1" class="form-label">username</label>
-      <input type="username" name="username" class="form-control" id="exampleInputUsername" aria-describedby="usernameHelp" [(ngModel)]="username">
+      <label for="exampleInputPassword1" class="form-label">Username</label>
+      <input type="username" name="username" class="form-control" id="exampleInputUsername" aria-describedby="usernameHelp" formControlName="username"  [(ngModel)]="username">
     </div>
     <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">password</label>
-        <input type="password" name="password" class="form-control" id="exampleInputPassword1" [(ngModel)]="password">
+        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <input type="password" name="password" class="form-control" id="exampleInputPassword1" formControlName="password" [(ngModel)]="password">
       </div>
        <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Password</label>
-        <input type="password" class="form-control" id="exampleInputPassword1">
+        <label for="exampleInputPassword1" class="form-label">Confirm Password</label>
+        <input type="name" class="form-control" formControlName="confirmPassword"  id="exampleInputPassword1">
       </div>
     <div class="row">
-        <div class="col-8">
-            <button type="submit" class="btn btn-primary" (click)="signup()">Submit</button>
+        <div class="col-1 offset-md-10">
+            <button type="submit" class="btn btn-primary text-light" (click)="signup()">Submit</button>
         </div>
-        <div class="col-4">
-            <button type="submit" class="btn btn-primary"><a [routerLink]="['/sign-in']" class="text-light" style="text-decoration: none;cursor: pointer;">Signin</a></button>
+        <div class="col-12 text-center">
+           Already have an account?  <a [routerLink]="['/sign-in']" style="text-decoration: none;cursor: pointer;"> Login</a>
+        </div>
+    </div>
+  </form> -->
+
+  <form action="#" [formGroup]="userRegistrationForm" (ngSubmit)="onSubmit()" class="bg-light text-dark p-5 rounded">
+    <h3>SignUp</h3>
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Email address</label>
+      <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" formControlName="email" >
+      <span *ngIf="userValidation('email') && userRegistrationForm.get('email').errors?.required" class="alert" style="color:red">
+         Email is compulsory!
+      </span>
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Username</label>
+      <input type="username" name="username" class="form-control" id="user-name" aria-describedby="usernameHelp" formControlName="username" >
+      <span *ngIf="userValidation('username') && userRegistrationForm.get('username').errors?.required" class="alert" style="color:red">
+         Username is compulsory!
+      </span>
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <input type="password" name="password" class="form-control" id="password" formControlName="password">
+        <span *ngIf="userValidation('password') && userRegistrationForm.get('password').errors?.required" class="alert" style="color:red">
+         Password is compulsory!
+        </span>
+      </div>
+       <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Confirm Password</label>
+        <input type="name" class="form-control" formControlName="confirmPassword"  id="confirmPassword">
+        <span *ngIf="userValidation('confirmPassword') && userRegistrationForm.get('confirmPassword').errors?.required" class="alert p-2" style="color:red">
+           c onfirm password is compulsory!
+        </span>
+      </div>
+    <div class="row">
+        <div class="col-1 offset-md-10">
+            <button type="submit" class="btn btn-primary text-light" [disabled]="!userRegistrationForm.valid" >Submit</button>
+        </div>
+        <div class="col-12 text-center">
+           Already have an account?  <a [routerLink]="['/sign-in']" style="text-decoration: none;cursor: pointer;"> Login</a>
         </div>
     </div>
 
 
   </form>
+</div>
 

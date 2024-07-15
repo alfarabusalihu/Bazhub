@@ -1,21 +1,11 @@
 <div class="container-fluid py-5">
     <div class="container py-5">
+        <!-- <div class="alert alert-primary" role="alert">
+            Cart is Updated!
+          </div> -->
         <div class="table-responsive">
-            <table class="table">
-                <!-- <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-                    <div class="toast-header">
-                      <img src="..." class="rounded mr-2" alt="...">
-                      <strong class="mr-auto">Bootstrap</strong>
-                      <small>11 mins ago</small>
-                      <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="toast-body">
-                      Hello, world! This is a toast message.
-                    </div>
-                  </div> -->
-                <thead>
+            <table class="table"> 
+                  <thead>
                     <tr>
                         <th scope="col">Products</th>
                         <th scope="col">Name</th>
@@ -24,8 +14,18 @@
                         <th scope="col">Total</th>
                         <th scope="col">Action</th>
                     </tr>
+                    <!-- <div class="alert alert-info text-center mt-2" role="alert" *ngIf="productData.length==0">
+                        Add some products!
+                      </div> -->
                 </thead>
+
                 <tbody>
+                    <tr *ngIf="productData.length==0">
+                        <th colspan="6">
+                            <p class="alert alert-info text-center">Your cart is empty!</p>
+                        </th>
+                    </tr>
+                    
                     <tr *ngFor="let product of productData; let i=index">
                         <th scope="row">
                             <div class="d-flex align-items-center">
@@ -65,7 +65,6 @@
                                 <i class="fa fa-times text-danger"></i>
                             </button>
                         </td>
-
                     </tr>
                 </tbody>
             </table>
@@ -89,18 +88,18 @@
                                 {{ calculateTotal() |currency: 'LKR' :'Rs. ' }}
                             </p>
                         </div>
-                        <div class="d-flex justify-content-between">
+                        <!-- <div class="d-flex justify-content-between">
                             <h5 class="mb-0 me-4">Shipping</h5>
                             <div class="">
                                 <p class="mb-0">Flat rate: {{ shippingFee |currency: 'LKR' :'Rs. ' }}</p>
                             </div>
-                        </div>
+                        </div> -->
                         <!-- <p class="mb-0 text-end">Shipping to Ukraine.</p> -->
                     </div>
                     <div class="py-4 mb-4 border-top border-bottom d-flex justify-content-between">
                         <h5 class="mb-0 ps-4 me-4">Total</h5>
                         <!-- condition ? succss : fail  -->
-                        <p class="mb-0 pe-4">{{ (subTotal === 0 ? 0 : shippingFee + subTotal) | currency: 'LKR' :'Rs. ' }}</p>
+                        <p class="mb-0 pe-4">{{ subTotal | currency: 'LKR' :'Rs. ' }}</p>
                     </div>
                     <a [routerLink]="['/checkout']" *ngIf="productData.length>0">
                         <button
