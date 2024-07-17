@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { PhoneSpecifics } from '../shared/interfaces/user.interface';
+// import { PhoneSpecifics } from '../shared/interfaces/user.interface';
 import { Router } from '@angular/router';
-import { Product } from './shared/interfaces/product.interface';
+import { DummyProducts } from '../shared/const/dummy-products.const';
+import { Product } from '../shared/interfaces/product.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -14,14 +15,6 @@ export class ProductServiceService {
   private name: string;
 
 
-  categories:any = [
-    { id: '1', name: "Main 1", parent: null },
-    { id: '2', name: "Sub 1", parent: 1 },
-    { id: '3', name: "Sub 2", parent: 1 },
-    { id: '4', name: "Main 2", parent: null },
-    { id: '5', name: "Main 3", parent: null },
-    { id: '6', name: "Sub 1", parent: 5 },
-  ]
 
   // categories: any = [
   //   {
@@ -55,11 +48,11 @@ export class ProductServiceService {
   //   }
   // ]
 
-  private products: Product[] = [
-    
-  ]
+  private products: Product[] = DummyProducts
 
-  constructor(private http: HttpClientModule, public router: Router) { }
+  constructor(private http: HttpClientModule, public router: Router) {
+    this.sortProducts();
+  }
 
   productInfo(index: any) {
     let productinfo = this.products[index]
@@ -71,4 +64,11 @@ export class ProductServiceService {
   getProduct(id: string): Product | undefined {
     return this.products.find(product => product.id === id)
   }
+
+  sortProducts() {
+    this.products.sort((a, b) => {
+      return new Date(b.createdDate).getTime() - new Date(a.createdDate).getTime()
+    })
+  }
 }
+

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { PhoneSpecifics } from 'src/app/shared/interfaces/user.interface';
-import { ProductServiceService } from '../../product-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from '../../shared/interfaces/product.interface';
 import { CartItem } from '../../shared/interfaces/cart.interface';
 import { CartServiceService } from '../../cart/cart-service.service';
+import { ProductServiceService } from '../../products/product-service.service';
 
 @Component({
   selector: 'app-home-products',
@@ -24,6 +24,7 @@ export class HomeProductsComponent implements OnInit {
   constructor(private productService:ProductServiceService,private route:ActivatedRoute,private cartService:CartServiceService) { }
 
   ngOnInit(){ 
+    // this.productService.sortProducts()
     this.products=this.productService.getProducts();
     
   }

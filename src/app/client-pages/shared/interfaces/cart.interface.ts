@@ -4,3 +4,10 @@ export interface CartItem{
     unitPrice: number;
     qty: number;
   }
+
+  export interface Category{
+    id:string,
+    name:string,
+    parent:null|number,
+
+  }

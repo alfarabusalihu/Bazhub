@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { PhoneSpecifics } from 'src/app/shared/interfaces/user.interface';
-import { ProductServiceService } from '../product-service.service';
 import { Product } from '../shared/interfaces/product.interface';
 import { ActivatedRoute } from '@angular/router';
 import { CartServiceService } from '../cart/cart-service.service';
 import { CartItem } from '../shared/interfaces/cart.interface';
+import { ProductServiceService } from '../products/product-service.service';
 
 @Component({
   selector: 'app-product-detail',

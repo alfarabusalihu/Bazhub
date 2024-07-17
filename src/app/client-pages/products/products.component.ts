@@ -1,10 +1,11 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { PhoneSpecifics } from 'src/app/shared/interfaces/user.interface';
-import { ProductServiceService } from '../product-service.service';
 import { Router } from '@angular/router';
 import { Product } from '../shared/interfaces/product.interface';
 import { CartItem } from '../shared/interfaces/cart.interface';
 import { CartServiceService } from '../cart/cart-service.service';
+import { ProductServiceService } from './product-service.service';
+import { CategoryService } from '../category.service';
 
 @Component({
   selector: 'app-products',
@@ -16,28 +17,40 @@ export class ProductsComponent implements OnInit {
   // productInterface:boolean=true;
   p: number = 1;
   products: Product[] = []
-  cartData:CartItem;
-  productItem:Product;
+  featuredProducts: Product[] = []
+  cartData: CartItem;
+  productItem: Product;
 
 
-  constructor(public productService: ProductServiceService, public cartService:CartServiceService, private router: Router) { }
+  constructor(public productService: ProductServiceService, public categoryService: CategoryService, public cartService: CartServiceService, private router: Router) { }
 
   ngOnInit(): void {
-    
+
     this.products = this.productService.getProducts()
+    this.productService.sortProducts()
     //console.log(this.productService.getProducts())
+    this.featuredProductsIdentification()
+
+    this.categoryService.getAllMainCtg()
   }
 
-  
-  addToCart(item:Product){
-    const data:CartItem={
+
+  addToCart(item: Product) {
+    const data: CartItem = {
       id: item.id,
       name: item.name,
       unitPrice: item.unitPrice,
-      qty:1,
+      qty: 1,
     }
     this.cartService.addToCart(data)
-    console.log("data",data)
+    // console.log("data",data)
+  }
+
+  featuredProductsIdentification() {
+    this.featuredProducts = [];
+    this.products.filter(item => {
+      if (item.isFeatured) this.featuredProducts.push(item)
+    })
   }
 
 
@@ -45,10 +58,10 @@ export class ProductsComponent implements OnInit {
   //   this.productService.productInfo(index);
   // }
 
-  specificDisplay(index: any) {
-    let productid = this.products[index];
-    console.log(productid);
-  }
+  // specificDisplay(index: any) {
+  //   let productid = this.products[index];
+  //   console.log(productid);
+  // }
 
   navigateProductDetail(id: string) { this.router.navigate(['/product-detail', id]) }
 
