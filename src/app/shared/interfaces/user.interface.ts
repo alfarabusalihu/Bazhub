@@ -1,13 +1,7 @@
 export interface User{
-    id:number;
+    id:string;
     email:string;
     username:string;
     password:string;
-}
-export interface PhoneSpecifics{
-    id:number;
-    model:string;
-    features:string;
-    imagepath:string;
-
+    image?:string;
 }

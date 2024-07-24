@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PhoneSpecifics } from 'src/app/shared/interfaces/user.interface';
+// import { PhoneSpecifics } from 'src/app/shared/interfaces/user.interface';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from '../../shared/interfaces/product.interface';
 import { CartItem } from '../../shared/interfaces/cart.interface';

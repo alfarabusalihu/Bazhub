@@ -7,12 +7,14 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
     SignInComponent,
     SignUpComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    UserProfileComponent
   ],
   imports: [
     CommonModule,

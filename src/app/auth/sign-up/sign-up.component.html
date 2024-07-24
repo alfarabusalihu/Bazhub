@@ -29,39 +29,53 @@
   </form> -->
 
   <form action="#" [formGroup]="userRegistrationForm" (ngSubmit)="onSubmit()" class="bg-light text-dark p-5 rounded">
-    <h3>SignUp</h3>
+    <h3 class="mb-3">SignUp</h3>
     <div class="mb-3">
       <label for="exampleInputEmail1" class="form-label">Email address</label>
-      <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" formControlName="email" >
-      <span *ngIf="userValidation('email') && userRegistrationForm.get('email').errors?.required" class="alert" style="color:red">
-         Email is compulsory!
+      <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" formControlName="email" required minlength="8">
+      <span *ngIf="formInputValidation('email') && userRegistrationForm.get('email').errors?.required" class="alert" style="color:red">
+        Email is compulsory!
       </span>
+      <span *ngIf="userRegistrationForm.get('password').errors?.email" class="alert" style="color:red">
+        Should be a valid Email address
+       </span>
     </div>
     <div class="mb-3">
       <label for="exampleInputPassword1" class="form-label">Username</label>
-      <input type="username" name="username" class="form-control" id="user-name" aria-describedby="usernameHelp" formControlName="username" >
-      <span *ngIf="userValidation('username') && userRegistrationForm.get('username').errors?.required" class="alert" style="color:red">
-         Username is compulsory!
+      <input type="username" name="username" class="form-control" id="user-name" aria-describedby="usernameHelp" formControlName="username" required minlength="5" >
+      <span *ngIf="formInputValidation('username') && userRegistrationForm.get('username').errors?.required" class="alert" style="color:red">
+        Username is compulsory!
       </span>
+      <span *ngIf="userRegistrationForm.get('username').errors?.minlength" class="alert" style="color:red">
+        Username should be not less than 5 characters!
+       </span>
     </div>
     <div class="mb-3">
         <label for="exampleInputPassword1" class="form-label">Password</label>
-        <input type="password" name="password" class="form-control" id="password" formControlName="password">
-        <span *ngIf="userValidation('password') && userRegistrationForm.get('password').errors?.required" class="alert" style="color:red">
+        <input type="password" name="password" class="form-control" id="password" formControlName="password" required minlength="8">
+        <span *ngIf="formInputValidation('password') && userRegistrationForm.get('password').errors?.required" class="alert" style="color:red">
          Password is compulsory!
         </span>
+        <span *ngIf="userRegistrationForm.get('password').errors?.minlength" class="alert" style="color:red">
+          Password should be not less than 8 characters!
+         </span>
       </div>
        <div class="mb-3">
         <label for="exampleInputPassword1" class="form-label">Confirm Password</label>
-        <input type="name" class="form-control" formControlName="confirmPassword"  id="confirmPassword">
-        <span *ngIf="userValidation('confirmPassword') && userRegistrationForm.get('confirmPassword').errors?.required" class="alert p-2" style="color:red">
-           c onfirm password is compulsory!
-        </span>
+        <input type="password" class="form-control" formControlName="confirmPassword"  id="confirmPassword" required minlength="8">
+        <!-- <span *ngIf="userRegistrationForm.get('password').value !== userRegistrationForm.get('confirmPassword').value || formInputValidation('confirmPassword')" class="alert p-2" style="color:red">
+          Password and Confirm Password Should match!
+        </span>   -->
+        <span *ngIf="(userRegistrationForm.get('password').touched && userRegistrationForm.get('confirmPassword').touched) && userRegistrationForm.errors?.passwordValidity" class="alert p-2" style="color:red">
+          Password and Confirm Password Should match!
+        </span> 
       </div>
+      
     <div class="row">
         <div class="col-1 offset-md-10">
-            <button type="submit" class="btn btn-primary text-light" [disabled]="!userRegistrationForm.valid" >Submit</button>
-        </div>
+            <button type="submit" class="btn btn-primary text-light"  [disabled]="!userRegistrationForm.valid" >Submit</button>
+        
+          </div>
         <div class="col-12 text-center">
            Already have an account?  <a [routerLink]="['/sign-in']" style="text-decoration: none;cursor: pointer;"> Login</a>
         </div>

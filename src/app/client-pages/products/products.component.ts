@@ -1,5 +1,5 @@
 import { Component, OnInit, Output } from '@angular/core';
-import { PhoneSpecifics } from 'src/app/shared/interfaces/user.interface';
+// import { PhoneSpecifics } from 'src/app/shared/interfaces/user.interface';
 import { Router } from '@angular/router';
 import { Product } from '../shared/interfaces/product.interface';
 import { CartItem } from '../shared/interfaces/cart.interface';
@@ -27,11 +27,10 @@ export class ProductsComponent implements OnInit {
   ngOnInit(): void {
 
     this.products = this.productService.getProducts()
+    console.log(this.products)
     this.productService.sortProducts()
-    //console.log(this.productService.getProducts())
     this.featuredProductsIdentification()
-
-    this.categoryService.getAllMainCtg()
+    // this.categoryService.getAllMainCtg()
   }
 
 

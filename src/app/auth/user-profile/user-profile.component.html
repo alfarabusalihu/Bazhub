@@ -1,0 +1,19 @@
+
+<div class="container mt-5 py-5" *ngIf="userDetail">
+<div class="row">
+<div class="col-lg-4">
+    <div class="image">
+        <a href                                                                                                    ="#">
+            <img [src]="userDetail.image" class="img-fluid rounded" alt="Image">
+        </a>
+    </div>
+</div>
+<div class="col-lg-7" >
+    <h4 class="fw-bold mb-3">Username: {{userDetail.username}}</h4>
+    <p class="mb-3">Email: {{userDetail.email}}</p>
+    
+    <!-- <button class="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary" (click)="addToCart()"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</button> -->
+</div>
+</div>
+</div>
+
