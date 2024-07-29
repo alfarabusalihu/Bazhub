@@ -4,8 +4,15 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { AuthGuard } from './auth.guard';
+
 
 const routes: Routes = [
+  {
+    path: 'auth',
+    pathMatch: 'full',
+    redirectTo: '/reset-password'
+  },
   {
     path:'sign-in',
     component:SignInComponent
@@ -21,6 +28,7 @@ const routes: Routes = [
   {
     path:'user-profile',
     component:UserProfileComponent,
+    canActivate:[AuthGuard]
   }
 
 ];

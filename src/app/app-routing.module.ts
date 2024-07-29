@@ -1,26 +1,26 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './client-pages/layout/layout.component';
-import { AuthModule } from './auth/auth.module';
-import { SignInComponent } from './auth/sign-in/sign-in.component';
-import { SignUpComponent } from './auth/sign-up/sign-up.component';
+import { AdminLayoutComponent } from './admin-pages/admin-layout/admin-layout.component';
+import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
 
 const routes: Routes = [
+  {
+    path: 'admin',
+    component: AdminLayoutComponent,
+    loadChildren: ()=> import('./admin-pages/admin-pages.module').then(x=> x.AdminPagesModule)
+  },
   {
     path: '',
     component: LayoutComponent,
     loadChildren: ()=> import('./client-pages/client-pages.module').then(m=> m.ClientPagesModule)
   },
-  {
-    path: 'sign-in',
-    component: SignInComponent,
-    loadChildren: ()=> import('./auth/auth.module').then(m=> m.AuthModule)
-  },
-  {
-    path: 'sign-up',
-    component: SignUpComponent,
-    loadChildren: ()=> import('./auth/auth.module').then(m=> m.AuthModule)
-  },
+  // {
+  //   path: 'auth',
+  //   component: ResetPasswordComponent,
+  //   loadChildren: ()=> import('./auth/auth.module').then(y=> y.AuthModule)
+  // },
+  
 ];
 
 @NgModule({

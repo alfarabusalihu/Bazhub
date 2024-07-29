@@ -12,7 +12,8 @@ export class AuthenticationService {
     { id: '1', email: 'alfarabu@gmail.com', username: 'alfar', password: 'alfaralfa', image: 'https://placehold.co/400x400' },
     { id: '2', email: 'alfarsdfg@gmail.com', username: 'abu', password: 'abuuuuuu', image: 'https://placehold.co/400x400' },
     { id: '3', email: 'raflasalfa@gmail.com', username: 'abu', password: 'wertyuio', image: 'https://placehold.co/400x400' },
-
+    { id: '4', email: 'admin@gmail.com', username: 'admin', password: 'admin123', image: 'https://placehold.co/400x400' },
+    
   ]
   authUser: User
 

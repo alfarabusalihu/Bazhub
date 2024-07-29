@@ -34,14 +34,27 @@ export class HeaderComponent implements OnInit {
   }
 
   logout(){
-    let isLogged=this.authService.logout()
-    this.router.navigate(['/sign-in'])
-    return isLogged;
+    if(confirm("Do you want to Log out") ){
+      let isLogged=this.authService.logout()
+      this.router.navigate(['/sign-in'])
+      return isLogged;
+    }
+    else{
+      // this.router.navigate(['/user-profile'])
+      console.log('hehehheheh')
+    }
   }
 
-  // getAuthUser(){
-  //   let fowler=this.authService.getAuthenticatedUser()
-  //   this.isAuthUserValid=true;
-  //   return this.isAuthUserValid
-  // }
+  getAuthUser(){
+    let isAuthUserValid:boolean=false
+    let user=this.authService.getAuthenticatedUser();
+
+    if(user){
+      return isAuthUserValid=true
+    }
+    else{
+      return false
+    }
+
+  }
 }

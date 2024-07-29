@@ -7,5 +7,11 @@ import { Component } from '@angular/core';
   
 })
 export class AppComponent {
+
+
+  // ngOnInit(){
+  //   console.log(this.router.config)
+
+  // }
   title = 'easy-buy-web';
 }

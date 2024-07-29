@@ -25,11 +25,13 @@
                 Email or Password is wrong
             </div>
             <div class="row">
-                <div class="col-1 offset-md-11">
+                <div class="col-2 offset-md-10">
                     <button class="btn btn-primary" type="submit" [disabled]="!userLoginForm.valid" (click)="userLogging()">Submit</button>
+                    <button class="btn btn-primary ml-2 bg-light"><a [routerLink]="['/admin']">Admin</a></button>
+                    
                 </div>
                 <div class="col-12 text-center">
-                    Don’t have an account? <a [routerLink]="['/sign-up']" style="font-size: 18px;" class="mt-2">create an account</a>
+                    Don’t have an account? <a [routerLink]="['/auth/sign-up']" style="font-size: 18px;" class="mt-2">create an account</a>
                 </div>
             </div>
     

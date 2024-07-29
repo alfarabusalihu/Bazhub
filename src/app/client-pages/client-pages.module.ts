@@ -11,9 +11,9 @@ import { FooterComponent } from './layout/footer/footer.component';
 import { LayoutComponent } from './layout/layout.component';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AuthRoutingModule } from '../auth/auth-routing.module';
+// import { AuthRoutingModule } from '../auth/auth-routing.module';
 import { RouterModule } from '@angular/router';
-import { AuthModule } from '../auth/auth.module';
+// import { AuthModule } from '../auth/auth.module';
 import { ContactComponent } from './contact/contact.component';
 import { BsModalService, ModalModule } from 'ngx-bootstrap/modal';
 import { HomeBestsellerComponent } from './home/home-bestseller/home-bestseller.component';
@@ -22,6 +22,7 @@ import { HomeCarouselComponent } from './home/home-carousel/home-carousel.compon
 import { HomeFeaturesComponent } from './home/home-features/home-features.component';
 import { HomeProductsComponent } from './home/home-products/home-products.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { AuthModule } from '../auth/auth.module';
 
 
 
@@ -46,7 +47,6 @@ import { NgxPaginationModule } from 'ngx-pagination';
     CommonModule,
     RouterModule,
     AuthModule,
-    AuthRoutingModule,
     NgxPaginationModule,
     ClientPagesRoutingModule,
     FormsModule,
@@ -54,7 +54,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     CarouselModule.forRoot(),
     ModalModule.forChild()
   ],
-  exports:[]
+  exports:[
+  ]
 })
 export class ClientPagesModule { }
 

@@ -6,7 +6,6 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { AuthRoutingModule } from './auth-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { NgxPaginationModule } from 'ngx-pagination';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 
 @NgModule({
@@ -18,13 +17,11 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
   ],
   imports: [
     CommonModule,
-    AuthRoutingModule,
     RouterModule,
+    AuthRoutingModule,
     FormsModule,
     ReactiveFormsModule,
   ],
-  exports:[
-    AuthRoutingModule
-  ]
+  exports:[]
 })
 export class AuthModule { }
