@@ -1,1 +1,61 @@
-<p>products works!</p>
+<div class="card">
+    <div class="card-header bg-dark">
+        <div class="row">
+            <div class="col-4">
+                <h3 class="card-title text-white text-center"> Product Details </h3>
+            </div>
+            <!-- <div class="col-2 offset-lg-10">
+                <button class="btn btn-block btn-primary">Add Product</button>
+            </div>    -->
+        </div>
+    </div>
+    
+    <div class="card-body rounded" >
+    <table id="example2" class="table table-bordered table-hover " >
+    <thead>
+    <tr class="bg-dark">
+    <th>ID</th>
+    <th>Category</th>
+    <th>Name</th>
+    <th>Unit Price</th>
+    <th>Short Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let product of products" (click)="getProduct(product.id)" >
+    <td style="cursor: pointer;">{{product.id}}</td>
+    <td>{{product.category}}</td>
+    <td>{{product.name}}</td>
+    <td>{{product.unitPrice}}</td>
+    <td>{{product.shortDescription}}</td>
+    </tr>
+    </tbody>
+    </table>
+    </div>  
+    </div>
+
+    <!-- <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-lg">
+        Launch Large Modal
+    </button> -->
+
+    <!-- <div class="modal fade" id="modal-lg">
+        <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+        <div class="modal-header">
+        <h4 class="modal-title">Large Modal</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        <div class="modal-body">
+        <p>One fine body&hellip;</p>
+        </div>
+        <div class="modal-footer justify-content-between">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+        </div>
+        
+        </div>
+        
+        </div> -->

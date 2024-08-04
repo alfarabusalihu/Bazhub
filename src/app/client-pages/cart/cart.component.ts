@@ -56,8 +56,7 @@ export class CartComponent implements OnInit {
     this.subTotal = subTotal;
     // console.log("Sub Total=",subTotal);
     return subTotal;
-  }
-    
+  }  
   }
       
   

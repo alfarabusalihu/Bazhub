@@ -8,7 +8,8 @@ import { SettingsComponent } from './settings/settings.component';
 import { UsersComponent } from './users/users.component';
 import { LoginComponent } from './auth/login/login.component';
 import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
-import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 
 @NgModule({
@@ -23,8 +24,10 @@ import { RouterModule } from '@angular/router';
   ],
   imports: [
     CommonModule,
-    // RouterModule,
     AdminPagesRoutingModule,
+    ReactiveFormsModule,
+    ModalModule.forRoot(),
+
   ],
   exports:[]
 })

@@ -3,7 +3,9 @@ import { CartItem } from '../shared/interfaces/cart.interface';
 import { CartServiceService } from '../cart/cart-service.service';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { PaymentMethodsEnum, ShippingMethodsEnum } from '../shared/enums';
-import { Order } from 'src/app/shared/interfaces/order.interface';
+import { Order } from '../shared/interfaces/order.interface';
+import { OrdersService } from 'src/app/admin-pages/orders/orders.service';
+
 
 @Component({
   selector: 'app-checkout',
@@ -13,7 +15,7 @@ import { Order } from 'src/app/shared/interfaces/order.interface';
 export class CheckoutComponent implements OnInit {
   productData:CartItem[];
 
-  orderedItems:Order[]=[]
+  orderedItems:Order
   submitted=false;
   subTotal: number;
   shippingFee: number = 300;
@@ -68,7 +70,7 @@ export class CheckoutComponent implements OnInit {
   // }
   // })
 
-  constructor(private cartService:CartServiceService) { 
+  constructor(private cartService:CartServiceService,private ordersService:OrdersService) { 
     
   }
 
@@ -124,9 +126,15 @@ export class CheckoutComponent implements OnInit {
     if (this.checkoutForm.valid) {
      console.log("form submit", this.checkoutForm.value);
     }
+
+    let orderId=new Date().getTime()
     
     this.orderedItems=this.checkoutForm.value;
-    console.log("Ordereditems=",this.orderedItems)   
+    this.orderedItems.id=orderId
+    this.ordersService.addOrder(this.orderedItems);
+
+    // console.log("Ordereditems=",this.orderedItems)
+
   }
 
   calculateTotal(shippingMethod:ShippingMethodsEnum){
@@ -145,6 +153,11 @@ export class CheckoutComponent implements OnInit {
     this.fullTotal=finalTotal;
 
     console.log("calculateTotal:",shippingMethod,finalTotal);
+  }
+
+  ngOnDestroy(){
+    let items=this.cartService.getCartItems()
+    items.length=0
   }
 
   

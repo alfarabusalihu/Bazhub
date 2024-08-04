@@ -1,1 +1,115 @@
-<p>login works!</p>
+<div class="row" *ngIf="!adminLogging()">
+        <div  class="login-page rounded">
+                
+                <div class="card">
+                <div class="card-body login-card-body">
+                <p class="login-box-msg">Sign in to start your session</p>
+                <form [formGroup]="adminLogin" action="../../index3.html" method="post">
+                <div class="input-group mb-3">
+                <input type="email" class="form-control" placeholder="Email" formControlName="email">
+                <div class="input-group-append">
+                <div class="input-group-text">
+                <span class="fas fa-envelope"></span>
+                </div>
+                </div>
+                </div>
+                <div class="input-group mb-3">
+                <input type="password" class="form-control" placeholder="Password" formControlName="password">
+                <div class="input-group-append">
+                <div class="input-group-text">
+                <span class="fas fa-lock"></span>
+                </div>
+                </div>
+                </div>
+                <div class="row">
+                <!-- <div class="col-8">
+                <div class="icheck-primary">
+                <input type="checkbox" id="remember">
+                <label for="remember">
+                Remember Me
+                </label>
+                </div>
+                </div> 
+                -->
+                
+                <div class="col-4 offset-lg-4">
+                <button type="submit" class="btn btn-primary btn-block" (click)="adminLogging()">Sign In</button>
+                </div>
+                
+                </div>
+                </form>
+                <div class="social-auth-links text-center mb-3">
+                <p>- OR -</p>
+                <a href="#" class="btn btn-block btn-primary">
+                <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
+                </a>
+                <a href="#" class="btn btn-block btn-danger">
+                <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
+                </a>
+                </div>
+                
+                <p class="mb-1">
+                <a href="forgot-password.html">I forgot my password</a>
+                </p>
+                </div>
+                
+                </div>
+                </div>
+        
+</div>
+
+<div class="col-4 offset-lg-4 p-4" *ngIf="adminLogging()">
+
+        <div class="card card-widget widget-user" >
+        
+        <div class="widget-user-header bg-info">
+        <h3 class="widget-user-username">{{admin.username}}</h3>
+        <h5 class="widget-user-desc">Founder & CEO</h5>
+        </div>
+        <div class="widget-user-image">
+        <img class="img-circle elevation-3" [src]="admin.image" alt="User Avatar">
+        </div>
+        <div class="card-footer">
+        <div class="row">
+        <!-- <div class="col-sm-4 border-right"> -->
+        <div class="description-block">
+        <h5 class="description-header">{{admin.email}}</h5>
+        <!-- <span class="description-text"></span> -->
+        <!-- </div> -->
+        
+        </div>
+        
+        <!-- <div class="col-sm-4 border-right">
+        <div class="description-block">
+        <h5 class="description-header">13,000</h5>
+        <span class="description-text">FOLLOWERS</span>
+        </div>
+        
+        </div>
+        
+        <div class="col-sm-4">
+        <div class="description-block">
+        <h5 class="description-header">35</h5>
+        <span class="description-text">PRODUCTS</span>
+        </div>
+        
+        </div> -->
+        
+        </div>
+        
+        </div>
+        </div>
+        
+        </div>
+
+
+        <div class="toast text-danger" role="alert" aria-live="assertive" aria-atomic="true" *ngIf="adminLogging()">
+                <div class="toast-body">
+                  Hello, world! This is a toast message.
+                  <div class="mt-2 pt-2 border-top">
+                    <button type="button" class="btn btn-primary btn-sm">Take action</button>
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="toast">Close</button>
+                  </div>
+                </div>
+              </div>
+

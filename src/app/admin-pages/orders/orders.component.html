@@ -1,1 +1,25 @@
-<p>orders works!</p>
+<div class=" col-sm-12 col-md-4 d-grid" >
+    <div class="card bg-light d-flex flex-fill" *ngFor="let order of orders">
+    <div class="card-header text-muted border-bottom-0">
+       <b> Order ID: </b> {{order.id}}
+    </div>
+    <div class="card-body pt-0">
+    <div class="row">
+    <div class="col-7">
+    <h2 class="lead"><b>{{order.shippingMethod}}</b></h2>
+    <!-- <p class="text-muted text-sm"><b>About: </b> Web Designer / UX / Graphic Artist / Coffee Lover </p> -->
+    <ul class="ml-4 mb-0 fa-ul text-muted">
+    <li class="small"><span class="fa-li"></span> Total: {{order.finalTotal | currency: 'LKR' : ' Rs. '}}</li>
+    </ul>
+    </div>
+    <div class="col-5 text-center">
+    </div>
+    </div>
+    </div>
+    <div class="card-footer">
+    <div class="text-right">
+    <a href="#" class="btn btn-sm btn-primary"> View Order </a>
+    </div>
+    </div>
+    </div>
+    </div>
