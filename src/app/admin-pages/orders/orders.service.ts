@@ -14,7 +14,7 @@ export class OrdersService {
   addOrder(item:Order){
     this.orders.push(item);
     this.confirmedOrders();
-    this.router.navigate(['/home'])
+    // this.router.navigate(['/home'])
 
   }
 
@@ -22,6 +22,26 @@ export class OrdersService {
 
   getOrders(){
     return JSON.parse(localStorage.getItem('orders'))
+  }
+
+  deleteOrder(data:any){
+    // get products from localstorage
+    let orders=this.getOrders()
+
+    //get the right object and compare 
+    orders.filter((item:any)=>{
+      if(data.id==item.id){
+        //deleting confirmation
+          confirm("are you sure")
+          // find index and splice it
+          let index=orders.indexOf(item)
+          orders.splice(index,1)
+        // console.log('if',orders,index)
+      }
+    else "wrong execution"
+  }
+  )
+    this.confirmedOrders()
   }
 }
 

@@ -50,7 +50,7 @@ export class ProductServiceService {
 
   private products: Product[] = DummyProducts
 
-  constructor(private http: HttpClientModule, public router: Router) {
+  constructor( public router: Router) {
     this.sortProducts();
   }
 
@@ -61,6 +61,13 @@ export class ProductServiceService {
 
   getProducts(): Product[] { return this.products }
 
+  getProductsFromStore(): Product[] { return JSON.parse(localStorage.getItem('Products')) }
+
+
+  storeProducts(product:Product[]){
+    localStorage.setItem(('Products'),JSON.stringify(product))
+  }
+
   getProduct(id: string): Product | undefined {
     return this.products.find(product => product.id === id)
   }
@@ -69,6 +76,30 @@ export class ProductServiceService {
     this.products.sort((a, b) => {
       return new Date(b.createdDate).getTime() - new Date(a.createdDate).getTime()
     })
+  }
+
+  addProduct(product:Product){
+    this.products.push(product)
+  }
+
+  deleteproduct(data:any){
+    // get products from localstorage
+    let products=this.getProductsFromStore()
+
+    //get the right object and compare 
+    products.filter((item:any)=>{
+      if(data.id==item.id){
+        //deleting confirmation
+          confirm("are you sure")
+          // find index and splice it
+          let index=products.indexOf(item)
+          products.splice(index,1)
+        // console.log('if',products,index)
+      }
+    else "wrong execution"
+  }
+  )
+    this.storeProducts(products)
   }
 }
 

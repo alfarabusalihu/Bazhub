@@ -1,0 +1,60 @@
+<div class="row">
+  <div class="col-xs-12">
+    <div class="box">
+      <div class="box-header">
+        <h3 class="box-title">{{title}}</h3>
+
+        <div class="box-tools">
+          <div class="input-group input-group-sm hidden-xs" style="width: 150px;">
+            <input name="table_search" [(ngModel)]="searchText" class="form-control pull-right" placeholder="Search"
+              (input)="searchByText(searchText)">
+
+            <div class="input-group-btn">
+              <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body table-responsive">
+        <table class="table table-hover">
+          <tr>
+            <th *ngFor="let column of columnDefinition">
+              {{column.displayName}}
+            </th>
+          </tr>
+          <tr *ngFor="let data of visibleArray"  style="cursor:pointer;">
+            <td *ngFor="let column of columnDefinition" [attr.column-field]="column.field" (click)="onRowClick(data)">
+              {{data[column.fieldName]}}
+            </td>
+            <td>
+              <!-- <ng-template [ngTemplateOutlet]="rowTemplate" [ngTemplateOutletContext]="{tableData:tableData}"></ng-template> -->
+              <ng-container *ngFor="let action of rowActions">
+                <button class="btn btn-danger bg-danger" (click)="action.action(data)">
+                  {{action.label}}
+                </button>
+              </ng-container>
+            </td>
+          </tr>
+
+        </table>
+        <div class="card-footer text-right">
+          <ul class="pagination pagination-sm m-0 float-right">
+            <button class="page-item" (click)="findCurrentPage(false)" [disabled]="currentPage==1"
+              style="cursor:pointer">Previous</button>
+            <button class="page-item" *ngFor="let count of showArray" [class.bg-primary]="currentPage==count"
+              (click)="visibleData(count)" style="cursor:pointer">
+                <span>
+                  {{count}}
+                </span>
+              </button>
+            <button class="page-item" (click)="findCurrentPage(true)" [disabled]="currentPage==totalPages"
+              style="cursor:pointer">Next</button>
+          </ul>
+        </div>
+      </div>
+      <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+  </div>
+</div>

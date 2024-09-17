@@ -1,115 +1,85 @@
-<div class="row" *ngIf="!adminLogging()">
-        <div  class="login-page rounded">
-                
-                <div class="card">
-                <div class="card-body login-card-body">
-                <p class="login-box-msg">Sign in to start your session</p>
-                <form [formGroup]="adminLogin" action="../../index3.html" method="post">
-                <div class="input-group mb-3">
-                <input type="email" class="form-control" placeholder="Email" formControlName="email">
-                <div class="input-group-append">
-                <div class="input-group-text">
-                <span class="fas fa-envelope"></span>
+<div class="login-box">
+                <div class="login-logo">
+                  <!-- <a><b>Admin</b>LTE</a> -->
                 </div>
-                </div>
-                </div>
-                <div class="input-group mb-3">
-                <input type="password" class="form-control" placeholder="Password" formControlName="password">
-                <div class="input-group-append">
-                <div class="input-group-text">
-                <span class="fas fa-lock"></span>
-                </div>
-                </div>
-                </div>
-                <div class="row">
-                <!-- <div class="col-8">
-                <div class="icheck-primary">
-                <input type="checkbox" id="remember">
-                <label for="remember">
-                Remember Me
-                </label>
-                </div>
-                </div> 
-                -->
-                
-                <div class="col-4 offset-lg-4">
-                <button type="submit" class="btn btn-primary btn-block" (click)="adminLogging()">Sign In</button>
-                </div>
-                
-                </div>
-                </form>
-                <div class="social-auth-links text-center mb-3">
-                <p>- OR -</p>
-                <a href="#" class="btn btn-block btn-primary">
-                <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
-                </a>
-                <a href="#" class="btn btn-block btn-danger">
-                <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
-                </a>
-                </div>
-                
-                <p class="mb-1">
-                <a href="forgot-password.html">I forgot my password</a>
+                <!-- /.login-logo -->
+                <div class="login-box-body p-4"  *ngIf="!authenticationConfirm()">
+                  <p class="login-box-msg"><b>
+                          Sign in to start your session
+                        </b>
                 </p>
-                </div>
-                
-                </div>
-                </div>
-        
-</div>
-
-<div class="col-4 offset-lg-4 p-4" *ngIf="adminLogging()">
-
-        <div class="card card-widget widget-user" >
-        
-        <div class="widget-user-header bg-info">
-        <h3 class="widget-user-username">{{admin.username}}</h3>
-        <h5 class="widget-user-desc">Founder & CEO</h5>
-        </div>
-        <div class="widget-user-image">
-        <img class="img-circle elevation-3" [src]="admin.image" alt="User Avatar">
-        </div>
-        <div class="card-footer">
-        <div class="row">
-        <!-- <div class="col-sm-4 border-right"> -->
-        <div class="description-block">
-        <h5 class="description-header">{{admin.email}}</h5>
-        <!-- <span class="description-text"></span> -->
-        <!-- </div> -->
-        
-        </div>
-        
-        <!-- <div class="col-sm-4 border-right">
-        <div class="description-block">
-        <h5 class="description-header">13,000</h5>
-        <span class="description-text">FOLLOWERS</span>
-        </div>
-        
-        </div>
-        
-        <div class="col-sm-4">
-        <div class="description-block">
-        <h5 class="description-header">35</h5>
-        <span class="description-text">PRODUCTS</span>
-        </div>
-        
-        </div> -->
-        
-        </div>
-        
-        </div>
-        </div>
-        
-        </div>
-
-
-        <div class="toast text-danger" role="alert" aria-live="assertive" aria-atomic="true" *ngIf="adminLogging()">
-                <div class="toast-body">
-                  Hello, world! This is a toast message.
-                  <div class="mt-2 pt-2 border-top">
-                    <button type="button" class="btn btn-primary btn-sm">Take action</button>
-                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="toast">Close</button>
+              
+                  <form [formGroup]="adminLogin" action="../../index2.html" method="post">
+                    <div class="form-group has-feedback">
+                      <input type="email" class="form-control" placeholder="Email" formControlName="email">
+                      <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                    </div>
+                    <div class="form-group has-feedback">
+                      <input type="password" class="form-control" placeholder="Password" formControlName="password">
+                      <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-8">
+                        <div class="checkbox icheck">
+                          <label>
+                            <input type="checkbox"> Remember Me
+                          </label>
+                        </div>
+                      </div>
+                      <!-- /.col -->
+                      <div class="col-xs-4">
+                        <button type="submit" class="btn btn-primary btn-block btn-flat" (click)="adminLogging()">Sign In</button>
+                      </div>
+                      <!-- /.col -->
+                    </div>
+                  </form>
+              
+                  <div class="social-auth-links text-center">
+                    <p>- OR -</p>
+                    <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in using
+                      Facebook</a>
+                    <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign in using
+                      Google+</a>
                   </div>
+                  <!-- /.social-auth-links -->
+              
+                  <a href="#">I forgot my password</a><br>
+                  <a href="register.html" class="text-center">Register a new membership</a>
+              
+                </div>
+                <!-- /.login-box-body -->
+                
+                <div class="row" *ngIf="authenticationConfirm()">
+                        <div class="col-lg-12">
+          
+                          <!-- Profile Image -->
+                          <div class="box box-primary" *ngIf="admin">
+                            <div class="box-body box-profile">
+                              <img class="profile-user-img img-responsive img-circle"  [src]="admin.image" alt="User profile picture">
+                
+                              <h3 class="profile-username text-center">Nina Mcintire</h3>
+                
+                              <p class="text-muted text-center">{{admin.username}}</p>
+                
+                              <ul class="list-group list-group-unbordered">
+                                <li class="list-group-item text-center">
+                                  <b>{{admin.email}}</b>
+                                </li>
+                              </ul>
+                
+                              <button class="btn btn-danger btn-block" (click)="logout()"><b>Log out</b></button>
+                            </div>
+                            <!-- /.box-body -->
+                          </div>
+                          <!-- /.box -->
+                
+                          <!-- About Me Box -->
+                         
+                          <!-- /.box -->
+                        </div>
+
                 </div>
               </div>
+
+
 

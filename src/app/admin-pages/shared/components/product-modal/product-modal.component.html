@@ -1,0 +1,58 @@
+<div class="modal-header bg-primary">
+  <h4 class="modal-title pull-left ">Products</h4>
+  <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+    <span aria-hidden="true" class="visually-hidden">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form role="form">
+    <div class="box-body">
+      <div class="form-group">
+        <label for="exampleInputCategory">Category</label>
+        <input name="category" type="category" class="form-control" id="category" [(ngModel)]="data.category">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputNmae">Name</label>
+        <input name="name" type="name" class="form-control" id="name" [(ngModel)]="data.name">
+      </div>
+      <div class="form-group">
+        <label for="exampleTnputPrice">Unit Price</label>
+        <input name="unitPrice" type="unitprice" class="form-control" id="price" [(ngModel)]="data.unitPrice">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputDescription">Description</label>
+        <input name="description" type="description" class="form-control" id="description"
+          [(ngModel)]="data.shortDescription">
+      </div>
+    </div>
+
+    <div class="box-footer">
+      <button type="submit" class="btn btn-primary" (click)="changeProductData()">Save</button>
+    </div>
+  </form>
+</div>
+
+
+<!-- <div class="modal fade" id="modal-default">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Products</h4>
+        </div>
+        <div class="modal-body">
+          <p>Category: {{data.category}}</p>
+          <p>Name{{data.name}}</p>
+          <p>Unit Price: {{data.unitPrice}}</p>
+          <p>Features: {{data.productDetails}}</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+      
+    </div>
+    <!-- /.modal-dialog 
+  </div> -->

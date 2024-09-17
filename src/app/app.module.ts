@@ -7,7 +7,7 @@ import { PageNotFoundComponent } from './shared/components/page-not-found/page-n
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { RouterModule, ROUTES } from '@angular/router';
-import { ModalModule } from 'ngx-bootstrap/modal';
+import { BsModalService, ModalModule } from 'ngx-bootstrap/modal';
 import { HttpClientModule } from '@angular/common/http';
 
 
@@ -17,6 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
   declarations: [
     AppComponent,
     PageNotFoundComponent,
+    // Safepi
   ],
   imports: [
     BrowserModule,
@@ -28,7 +29,7 @@ import { HttpClientModule } from '@angular/common/http';
     CarouselModule.forRoot(),
     ModalModule.forRoot()
   ],
-  providers: [],
+  providers: [BsModalService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

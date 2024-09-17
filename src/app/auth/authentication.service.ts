@@ -7,6 +7,9 @@ import { User } from '../shared/interfaces/user.interface';
 })
 export class AuthenticationService {
 
+  authUser:User
+  authAdmin:User
+
 
   private users: User[] = [
     { id: '1', email: 'alfarabu@gmail.com', username: 'alfar', password: 'alfaralfa', image: 'https://placehold.co/400x400', type:'user' },
@@ -17,13 +20,17 @@ export class AuthenticationService {
     { id: '6', email: 'rafl333alfa@gmail.com', username: 'ab22u', password: 'wertyuio', image: 'https://placehold.co/400x400' , type:'user'   },
     
   ]
-  authUser: User
+  
 
   constructor() {
     // this.getUsersFromStore()
+  
   }
+  
 
   getUsers(): User[] { return this.users }
+  // getUsers(): User[] { return localStorage.getItem }
+
 
   getUserById(id: string) { this.users.find((user) => { return user.id == id }) }
 
@@ -38,7 +45,7 @@ export class AuthenticationService {
 
     const user = this.getUserByEmail(email);
 
-    if(user && user.password===password && user.type=='user'){
+    if(user && user.type=='user' && user.password==password ){
       this.setAuthenticatedUser(user);
       return true
 
@@ -51,21 +58,23 @@ export class AuthenticationService {
 
   setAuthenticatedUser(user: User) { localStorage.setItem('authenticatedUser', JSON.stringify(user)) }
 
-  setAuthenticatedAdmin(user: User) { localStorage.setItem('authenticatedAdmin', JSON.stringify(user)) }
-
-
+  setAuthenticatedAdmin(user: User) { localStorage.setItem('Admin', JSON.stringify(user)) }
+  
+  saveToStore() { localStorage.setItem('users', JSON.stringify(this.users)); }
+  
   getAuthenticatedUser() {
     this.authUser = JSON.parse(localStorage.getItem('authenticatedUser'))
     return this.authUser
   }
 
   getAuthenticatedAdmin() {
-     return JSON.parse(localStorage.getItem('authenticatedAdmin'))
+     return JSON.parse(localStorage.getItem('Admin'))
   }
 
-  getUsersFromStore() { this.users = JSON.parse(localStorage.getItem('users')); }
+  getUsersFromStore() { this.users = JSON.parse(localStorage.getItem('users')); 
+    return this.users
+  }
 
-  saveToStore() { localStorage.setItem('users', JSON.stringify(this.users)); }
 
   registerUser(user: User) {
     let id = new Date().getTime()
@@ -75,5 +84,33 @@ export class AuthenticationService {
     this.saveToStore();
   }
 
-  logout() {  localStorage.removeItem('autenticatedUser'); }
+  logout() {  localStorage.removeItem('authenticatedUser'); }
+
+  logoutAdmin() {  localStorage.removeItem('Admin'); }
+
+  
+  deleteUser(data:any){
+    // get user from localstorage
+    let users=this.getUsersFromStore()
+
+    //get the right object and compare 
+    users.filter((item:any)=>{
+      if(data.id==item.id){
+        //deleting confirmation
+          confirm("are you sure")
+          // find index and splice it
+          let index=users.indexOf(item)
+          users.splice(index,1)
+        // console.log('if',users,index)
+      }
+    else "wrong execution"
+  }
+  )
+  console.log(users)
+
+    this.saveToStore()
+  }
+
+
+  
 }

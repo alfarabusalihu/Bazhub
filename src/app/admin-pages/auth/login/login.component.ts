@@ -11,6 +11,7 @@ import { User } from 'src/app/shared/interfaces/user.interface';
 })
 export class LoginComponent implements OnInit {
   admin:User
+  isAuthenticated:boolean=false
 
   adminLogin:FormGroup=new FormGroup({
     email:new FormControl(''),
@@ -29,15 +30,24 @@ export class LoginComponent implements OnInit {
       email:this.adminLogin.get('email').value,
       password:this.adminLogin.get('password').value
     }
-    if(this.authService.login(authDetails)){
+    this.authService.login(authDetails)
+   
       // this.router.navigate(['/admin/dashboard'])
-      this.admin=this.authService.getAuthenticatedAdmin()
-      // console.log(admin)
-      return true && this.admin
-    }
-    else{
-      return false
-    }
+      // console.log(this.admin)
+      // return  this.admin
+  }
+
+  authenticationConfirm(){
+   if(this.admin=this.authService.getAuthenticatedAdmin()) {
+     this.isAuthenticated=true
+   }
+    return this.admin && this.isAuthenticated
+  }
+
+  logout(){
+      this.authService.logoutAdmin()
+      this.isAuthenticated=false
+      return this.isAuthenticated
   }
 
 }
