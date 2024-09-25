@@ -23,6 +23,7 @@ import { HomeFeaturesComponent } from './home/home-features/home-features.compon
 import { HomeProductsComponent } from './home/home-products/home-products.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AuthModule } from '../auth/auth.module';
+import { SafePipe } from '../shared/pipes/safe.pipe';
 
 
 
@@ -42,6 +43,7 @@ import { AuthModule } from '../auth/auth.module';
     HomeBestsellerComponent,
     TestimonialComponent,
     HomeCarouselComponent,
+    SafePipe
   ],
   imports: [
     CommonModule,

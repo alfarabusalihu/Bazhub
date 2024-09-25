@@ -20,9 +20,7 @@ export class OrdersService {
 
   confirmedOrders(){ localStorage.setItem(('orders'),JSON.stringify(this.orders)) }
 
-  getOrders(){
-    return JSON.parse(localStorage.getItem('orders'))
-  }
+  getOrders(){ return JSON.parse(localStorage.getItem('orders')) }
 
   deleteOrder(data:any){
     // get products from localstorage

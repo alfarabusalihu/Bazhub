@@ -18,6 +18,7 @@ export class TableComponent implements OnInit {
   @Input() rowActions:{label:string,action:(row:any)=>void}[]
 
 
+
   // countArray:number[]=[]
   visibleArray:[]=[]
   searchResults:[]=[]
@@ -68,23 +69,16 @@ export class TableComponent implements OnInit {
   }
 
   searchByText(searchText:string){
-    // this.searchResults=this.tableData
-    // this.searchResults.filter(data=>
-    //   data.includes
-    
-    // )
     
     this.searchResults=this.tableData.filter((data: any| object)=> { 
       data.includes(searchText)
     }
-    //   // console.log(searchResults)
     )
   }
   
 
   onRowClick(rowData:any){
     console.log('RowData',rowData)
-
     this.onClick.emit(rowData);
   }
 
@@ -99,42 +93,60 @@ export class TableComponent implements OnInit {
     this.totalPages=Math.ceil(this.tableData.length/this.pageSize)
     //having a dynamic end value to determine showArray
     let pageCountLimit=(this.currentPage + this.pageSize)-1
-    
-    // console.log(this.totalPages,this.pageSize,pageCountLimit)
-    // console.log(this.showArray);
-
+    //1+6=7-1=6
+    console.log(this.totalPages,pageCountLimit,this.pageSize )
     //pagesCount shouldn't exceed totalPages
     if(this.totalPages >= pageCountLimit){
+      //2 and 6
       //length was reduced to 0 so the previous loop numbers  won't be added to the array
+      console.log(this.totalPages,this.showArray.length)
       this.showArray.length=0
-     
-      //the for loop will create an array of numbers until it equals pageSize
+      //the for loop will create an array of numbers until it equals page countlimit
       for(let x=this.currentPage; x<=pageCountLimit ; x++ ){ 
         this.showArray.push(x) 
+        console.log(this.showArray)
       } 
     }
     else {
       //once again length was reduced to 0 so the previous loop numbers  won't be added to the array 
-      this.showArray.length=0
+      console.log('count',this.totalPages,'length',this.showArray.length)
+       this.showArray.length=0
       for(let x=this.currentPage; x<=this.totalPages ; x++ ){ 
+        ///1 and 2
         this.showArray.push(x) 
+        console.log(this.showArray)
+      } 
       } 
 
     }
-    //  console.log(this.showArray);
 
-    // if(this.totalPages>this.pageSize){
-    //   // let ShowPageNumbers=
-    //   let start = ( this.currentPage-1 ) * ( this.pageSize );
-    //   let end = start + this.pageSize
+  // getPagesCount(){
 
-    //   this.showArray=this.countArray.slice(start,end)
-      // console.log(start,end)
+  //   this.totalPages=Math.ceil(this.tableData.length/this.pageSize)
+  //   console.log(this.totalPages,this.tableData,this.currentPage)
+  //   let pageLimitCount=6
+  //   let start= this.currentPage
+  //   let end=(this.currentPage+pageLimitCount)
+    
 
-    // }
+  //   if(this.currentPage<this.totalPages){
+    
+  //   this.showArray.length=0
+  //   for (let x=start;x<end && x<=this.totalPages;x++){
+  //     this.showArray.push(x)
+  //   }
+  //   console.log('listed',this.showArray)
+  //   }
+  //   else {
+  //     if(Math.max(...this.showArray) < this.totalPages){
+  //       this.showArray.push(this.totalPages)
+  //       console.log('listeddiff',this.showArray)
+  //     }
+  //   } 
+  //   }
 
   }
-}
+
 
 
 

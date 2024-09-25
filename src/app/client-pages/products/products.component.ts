@@ -28,7 +28,7 @@ export class ProductsComponent implements OnInit {
 
     this.products = this.productService.getProducts()
     console.log(this.products)
-    this.productService.sortProducts()
+    // this.productService.sortProducts()
     this.featuredProductsIdentification()
     // this.categoryService.getAllMainCtg()
   }

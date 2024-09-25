@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SecurityContext } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { DomSanitizer } from '@angular/platform-browser';
 import { SettingsService } from 'src/app/admin-pages/settings/settings.service';
 
 @Component({
@@ -11,9 +12,10 @@ export class ContactComponent implements OnInit {
   commonMail:string=this.SettingsService.commonEmail
   commonAddress:string=this.SettingsService.commonAddress
   commonTel:number=this.SettingsService.commonTel
-  commonmap:string=this.SettingsService.commonMap
+  commonMap:string=this.SettingsService.commonMap
+  UR:any
 
-  constructor(private SettingsService:SettingsService) { }
+  constructor(private SettingsService:SettingsService, private sanitizer:DomSanitizer) { }
 
   contactForm = new FormGroup({
     name: new FormControl(''),
@@ -23,7 +25,8 @@ export class ContactComponent implements OnInit {
 
 
   ngOnInit(): void {
-    console.log(this.contactForm.value)
+   console.log(this.contactForm.value)
   }
+
 
 }

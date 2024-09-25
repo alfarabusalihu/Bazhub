@@ -12,6 +12,7 @@
             <div class="input-group-btn">
               <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
             </div>
+
           </div>
         </div>
       </div>
@@ -28,7 +29,6 @@
               {{data[column.fieldName]}}
             </td>
             <td>
-              <!-- <ng-template [ngTemplateOutlet]="rowTemplate" [ngTemplateOutletContext]="{tableData:tableData}"></ng-template> -->
               <ng-container *ngFor="let action of rowActions">
                 <button class="btn btn-danger bg-danger" (click)="action.action(data)">
                   {{action.label}}

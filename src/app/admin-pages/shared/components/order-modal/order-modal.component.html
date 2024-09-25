@@ -1,38 +1,42 @@
-<div class="modal-header bg-primary">
-  <h4 class="modal-title pull-left ">Orders</h4>
-  <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
-    <span aria-hidden="true" class="visually-hidden">&times;</span>
-  </button>
-</div>
-<div class="modal-body">
-  <form role="form">
-    <div class="box-body">
-      <div class="form-group">
-        <label for="exampleInputCategory">Order ID</label>
-        <input name="id" type="id" class="form-control" id="id" [(ngModel)]="orderData.id">
+
+
+      <div class="modal-header">
+        <h4 class="modal-title pull-left ">Orders</h4>
+        <button type="button" class="btn-close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+          <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
       </div>
-      <div class="form-group">
-        <label for="exampleInputCategory">Name</label>
-        <input name="firstName" type="firstName" class="form-control" id="firstName"
-          [(ngModel)]="orderData.billingDetails.firstName">
+      <div class="modal-body">
+        <form role="form">
+          <div class="box-body">
+            <div class="form-group">
+              <label for="exampleInputCategory">Order ID</label>
+              <input name="id" type="id" class="form-control" id="id" [(ngModel)]="orderData.id">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputCategory">Name</label>
+              <input name="firstName" type="firstName" class="form-control" id="firstName"
+                [(ngModel)]="orderData.billingDetails.firstName">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputCategory">Shipping Method</label>
+              <input name="ship-method" type="ship-method" class="form-control" id="ship-method"
+                [(ngModel)]="orderData.shippingMethod">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputName">Total Amount</label>
+              <input name="total" type="total" class="form-control" id="total" [(ngModel)]="orderData.finalTotal">
+            </div>
+            <div class="form-group">
+              <label for="exampleTnputPrice">Payment Method</label>
+              <input name="pay-method" type="pay-method" class="form-control" id="pay-method"
+                [(ngModel)]="orderData.paymentMethod">
+            </div>
+          </div>
+
+        </form>
       </div>
-      <div class="form-group">
-        <label for="exampleInputCategory">Shipping Method</label>
-        <input name="ship-method" type="ship-method" class="form-control" id="ship-method"
-          [(ngModel)]="orderData.shippingMethod">
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" (click)="ChangeOrderDetails()">Save</button>
       </div>
-      <div class="form-group">
-        <label for="exampleInputName">Total Amount</label>
-        <input name="total" type="total" class="form-control" id="total" [(ngModel)]="orderData.finalTotal">
-      </div>
-      <div class="form-group">
-        <label for="exampleTnputPrice">Payment Method</label>
-        <input name="pay-method" type="pay-method" class="form-control" id="pay-method"
-          [(ngModel)]="orderData.paymentMethod">
-      </div>
-    </div>
-    <div class="box-footer">
-      <button type="submit" class="btn btn-primary" (click)="ChangeOrderDetails()">Save</button>
-    </div>
-  </form>
-</div>
+ 

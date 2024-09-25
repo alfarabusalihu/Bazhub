@@ -51,7 +51,7 @@ export class ProductServiceService {
   private products: Product[] = DummyProducts
 
   constructor( public router: Router) {
-    this.sortProducts();
+    this.sortProducts(this.products);
   }
 
   productInfo(index: any) {
@@ -72,7 +72,7 @@ export class ProductServiceService {
     return this.products.find(product => product.id === id)
   }
 
-  sortProducts() {
+  sortProducts(products:Product[]) {
     this.products.sort((a, b) => {
       return new Date(b.createdDate).getTime() - new Date(a.createdDate).getTime()
     })
